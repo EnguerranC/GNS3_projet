@@ -2,22 +2,16 @@ import json
 
 """ 
 --- Parametre de la config reseau ---
-
-- Configuration interne des AS
-
 """
 
 """ AS 111 """
 
 # Nom AS
 Nom_AS1 = "111"
-
 # Nombre de routeur
 N1 = 3
-
 # Protocole interne
 Protocole_AS1 = "RIPng"
-
 # Graphe d'adjacence de taille N1xN1
 M1 = [[0,1,1],[1,0,1],[0,1,0]]
 
@@ -25,13 +19,10 @@ M1 = [[0,1,1],[1,0,1],[0,1,0]]
 
 # Nom AS
 Nom_AS2 = "112"
-
 # Nombre de routeur
 N2 = 3
-
 # Protocole interne
 Protocole_AS2 = "OSPF" 
-
 # Graphe d'adjacence de taille N2xN2
 M2 = [[0,1,1],[1,0,1],[0,1,0]]
 
@@ -40,8 +31,8 @@ Creation du dictionnaire vide
 """
 
 config = {
-     Nom_AS1 : { "Nombre_routeur" : N1 , "Matrice_adjacence" : M1 , "Masque_reseau" : "" , "Matrice_adressage" : [["","",""],["","",""],["","",""]] },
-     Nom_AS2 : { "Nombre_routeur" : N2 , "Matrice_adjacence" : M2 , "Masque_reseau" : "" , "Matrice_adressage" : [["","",""],["","",""],["","",""]] }
+     Nom_AS1 : { "Nombre_routeur" : N1 , "Matrice_adjacence" : M1 , "Masque_reseau" : "" , "Matrice_adressage" : [["","",""],["","",""],["","",""]] , "Protocole" : Protocole_AS1 },
+     Nom_AS2 : { "Nombre_routeur" : N2 , "Matrice_adjacence" : M2 , "Masque_reseau" : "" , "Matrice_adressage" : [["","",""],["","",""],["","",""]] , "Protocole" : Protocole_AS2 }
 }
 
 """ 
