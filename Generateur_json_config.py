@@ -44,8 +44,8 @@ def Adressage_AS(Nom_AS , Matrice_adjacence, Nombre_routeur) :
         for i in range(Nombre_routeur) :
             for j in range(Nombre_routeur) :
                 if Matrice_adjacence[i][j] :
-                     adresse_unique1 = config[Nom_AS]["Masque_reseau"][:3]+".0."+str(i+1)+"::"+"1/64"
-                     adresse_unique2 = config[Nom_AS]["Masque_reseau"][:3]+".0."+str(i+1)+"::"+"2/64"
+                     adresse_unique1 = config[Nom_AS]["Masque_reseau"][:3]+":0:"+str(i+1)+"::"+"1/64"
+                     adresse_unique2 = config[Nom_AS]["Masque_reseau"][:3]+":0:"+str(i+1)+"::"+"2/64"
                      config[Nom_AS]["Matrice_adressage"][i][j] = adresse_unique1
                      config[Nom_AS]["Matrice_adressage"][j][i] = adresse_unique2
                      
