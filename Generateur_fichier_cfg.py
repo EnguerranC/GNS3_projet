@@ -18,7 +18,7 @@ for i in range(nombre_routers) :
         fichier_cfg.writelines(['!\n','\n', '!\n', 'version 15.2\n', 'service timestamps debug datetime msec\n',
                                 'service timestamps log datetime msec\n', '!\n'])
         
-        fichier_cfg.writelines('hostname R' + str(i+1))
+        fichier_cfg.writelines('hostname R' + str(i+1) + '\n')
         fichier_cfg.writelines([
                             "! \n",
                             "boot-start-marker\n",
