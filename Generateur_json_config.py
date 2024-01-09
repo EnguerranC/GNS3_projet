@@ -13,7 +13,7 @@ N1 = 3
 # Protocole interne
 Protocole_AS1 = "RIPng"
 # Graphe d'adjacence de taille N1xN1
-M1 = [[0,1,1],[1,0,1],[0,1,0]]
+M1 = [[0,1,1],[1,0,1],[1,1,0]]
 
 """ AS 112 """
 
@@ -24,7 +24,7 @@ N2 = 3
 # Protocole interne
 Protocole_AS2 = "OSPF" 
 # Graphe d'adjacence de taille N2xN2
-M2 = [[0,1,1],[1,0,1],[0,1,0]]
+M2 = [[0,1,1],[1,0,1],[1,1,0]]
 
 """
 Creation du dictionnaire vide

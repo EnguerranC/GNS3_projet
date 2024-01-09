@@ -6,6 +6,7 @@ with open("config.json", 'r') as fichier:
 
 
 nombre_routers = 0
+num_router=1
 liste_AS = list(config.keys())
 print(liste_AS)
 nombre_AS = len(liste_AS)
@@ -13,55 +14,32 @@ nombre_AS = len(liste_AS)
 for i in range(nombre_AS):
     nombre_routers += int(config[liste_AS[i]]["Nombre_routeur"])
 
-for i in range(nombre_routers) :
-    with open("R" + str(i+1) + "_configs_i" + str(i+1) + "_startup-config.cfg",'w') as fichier_cfg :
-        fichier_cfg.writelines(['!\n','\n', '!\n', 'version 15.2\n', 'service timestamps debug datetime msec\n',
-                                'service timestamps log datetime msec\n', '!\n'])
-        
-        fichier_cfg.writelines('hostname R' + str(i+1) + '\n')
-        fichier_cfg.writelines([
-                            "! \n",
-                            "boot-start-marker\n",
-                            "boot-end-marker\n",
-                            "!\n",
-                            "!\n",
-                            "!\n",
-                            "no aaa new-model\n",
-                            "no ip icmp rate-limit unreachable\n",
-                            "ip cef\n",
-                            "!\n",
-                            "!\n",
-                            "!\n",
-                            "!\n",
-                            "!\n",
-                            "!\n",
-                            "no ip domain lookup\n",
-                            "ipv6 unicast-routing\n",
-                            "ipv6 cef\n",
-                            "!\n",
-                            "!\n",
-                            "multilink bundle-name authenticated\n",
-                            "!\n",
-                            "!\n",
-                            "!\n",
-                            "!\n",
-                            "!\n",
-                            "!\n",
-                            "!\n",
-                            "!\n",
-                            "!\n",
-                            "ip tcp synwait-time 5\n",
-                            "!\n",
-                            "!\n",
-                            "!\n",
-                            "!\n",
-                            "!\n",
-                            "!\n",
-                            "!\n",
-                            "!\n",
-                            "!\n",
-                            "!\n",
-                            "!\n",
-                            "!\n"
-                        ])
-        
+
+for i in range(nombre_AS) :
+    for j in range(config[liste_AS[i]]["Nombre_routeur"]) :
+
+        with open("R" + str(num_router) + "_configs_i" + str(num_router) + "_startup-config.cfg",'w') as fichier_cfg :
+
+            fichier_cfg.writelines(['!\n', 'hostname R' + str(num_router) + '\n', '!\n'])
+            
+            ######### loopback ########
+
+            fichier_cfg.writelines([
+                    "interface Loopback0\n",
+                    " no ip address\n",
+                    " ipv6 address 5000::" + str(num_router) + "/128\n"
+                            ])
+            if config[liste_AS[i]]["Protocole"] == "RIPng" : 
+                fichier_cfg.writelines([
+                    " ipv6 enable\n", 
+                    " ipv6 ospf " + liste_AS[i] + " area " + liste_AS[i] + "\n"
+                ])
+            fichier_cfg.write('!\n')
+
+            ######### interfaces ########
+
+            
+            
+
+            num_router += 1
+
