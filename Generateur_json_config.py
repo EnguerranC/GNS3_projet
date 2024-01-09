@@ -57,6 +57,6 @@ Adressage_AS(Nom_AS1,M1,N1)
 Adressage_AS(Nom_AS2,M2,N2)
 
 fichier = open("config.json","w")
-json.dump(config, fichier)
+json.dump(config, fichier, indent=4)
 
 
