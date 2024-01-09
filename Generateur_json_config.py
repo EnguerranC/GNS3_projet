@@ -13,7 +13,7 @@ N1 = 3
 # Protocole interne
 Protocole_AS1 = "RIPng"
 # Graphe d'adjacence de taille N1xN1
-M1 = [[0,1,1],[1,0,1],[0,1,0]]
+M1 = [[0,1,1],[1,0,1],[1,1,0]]
 
 """ AS 112 """
 
@@ -24,7 +24,7 @@ N2 = 3
 # Protocole interne
 Protocole_AS2 = "OSPF" 
 # Graphe d'adjacence de taille N2xN2
-M2 = [[0,1,1],[1,0,1],[0,1,0]]
+M2 = [[0,1,1],[1,0,1],[1,1,0]]
 
 """
 Creation du dictionnaire vide
@@ -57,6 +57,6 @@ Adressage_AS(Nom_AS1,M1,N1)
 Adressage_AS(Nom_AS2,M2,N2)
 
 fichier = open("config.json","w")
-json.dump(config, fichier)
+json.dump(config, fichier, indent=4)
 
 
