@@ -1,6 +1,11 @@
 {
     "111": {
         "Nombre_routeur": 3,
+        "Liste_router": [
+            1,
+            2,
+            3
+        ],
         "Matrice_adjacence": [
             [
                 0,
@@ -36,18 +41,24 @@
                 ""
             ]
         ],
-        "Routage_interne": {
+        "Routage_intraAS": {
             "Protocol": "RIPng",
             "Attribut": ""
         },
-        "Routage_externe": {
+        "Routage_interAS": {
             "Protocol": "BGP",
             "ID_routeur_bordeur": 3,
+            "Remote_AS": "112",
             "Attribut": ""
         }
     },
     "112": {
         "Nombre_routeur": 3,
+        "Liste_router": [
+            4,
+            5,
+            6
+        ],
         "Matrice_adjacence": [
             [
                 0,
@@ -83,13 +94,14 @@
                 ""
             ]
         ],
-        "Routage_interne": {
+        "Routage_intraAS": {
             "Protocol": "OSPF",
             "Attribut": ""
         },
-        "Routage_externe": {
+        "Routage_interAS": {
             "Protocol": "BGP",
             "ID_routeur_bordeur": 3,
+            "Remote_AS": "111",
             "Attribut": ""
         }
     }
