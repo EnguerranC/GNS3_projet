@@ -2,6 +2,7 @@
 
 # Module à faire sur generateur_json_config :
 - Generateur du graphe d'adjacence (plutôt que de le faire soi-même)
+- Generateur d'un graphe d'adressage vide
 
 # Module à faire sur generateur_fichier_cfg :
 - 
