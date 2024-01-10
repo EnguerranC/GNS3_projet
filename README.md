@@ -8,10 +8,12 @@
 - 
 
 # Test de flexibilité du json :
-- Rajout d'un lien
-- Suppression d'un lien
-- Rajout d'un routeur
-- Suppression d'un routeur
+- Rajout d'un lien ?
+- Suppression d'un lien ?
+- Rajout d'un routeur ?
+- Suppression d'un routeur ?
+- Rajout d'un routeur border ?
+- Suppression d'un router border ?
 
 
 # Notes utiles
