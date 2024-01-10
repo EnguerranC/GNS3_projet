@@ -36,8 +36,15 @@
                 ""
             ]
         ],
-        "Protocole": "RIPng",
-        "ID_routeur_bordeur": 3
+        "Routage_interne": {
+            "Protocol": "RIPng",
+            "Attribut": ""
+        },
+        "Routage_externe": {
+            "Protocol": "BGP",
+            "ID_routeur_bordeur": 3,
+            "Attribut": ""
+        }
     },
     "112": {
         "Nombre_routeur": 3,
@@ -76,8 +83,14 @@
                 ""
             ]
         ],
-        "Protocole": "OSPF",
-        "ID_routeur_bordeur": 3
-    },
-    "BGP": {}
+        "Routage_interne": {
+            "Protocol": "OSPF",
+            "Attribut": ""
+        },
+        "Routage_externe": {
+            "Protocol": "BGP",
+            "ID_routeur_bordeur": 3,
+            "Attribut": ""
+        }
+    }
 }
