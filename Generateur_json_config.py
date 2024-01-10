@@ -10,7 +10,7 @@ Dynamips_ID = 1
 """ AS 1 """
 
 # Num AS
-Num_AS1 = 1
+Num_AS1 = "AS1"
 # Nombre de routeur
 N1 = 3
 #numeros des routers dans l'AS :
@@ -27,7 +27,7 @@ Num_routeur_bordeur1 = 3
 """ AS 2 """
 
 # Num AS
-Num_AS2 = 2
+Num_AS2 = "AS2"
 # Nombre de routeur
 N2 = 3
 #numeros des routers dans l'AS :
