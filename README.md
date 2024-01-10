@@ -13,7 +13,7 @@ Automatisation de la generation du dictionnaire vide :
 Fonction :
 - Adressage_AS(Nom_As , Matrice_adjacence , Nombre_routeur) --> None : Configure les adresses des liens d'une AS dans le fichier json
 
-# A rajouter : 
+# A faire : 
   Routage inter AS :
   - Mettre en forme le json BGP (quelles infos on met dedans...)
   - Des parties à automatiser ?
@@ -42,6 +42,8 @@ Fonction :
 # / iBGP :
 - Generateur d'ID des routeurs uniques
 
+# A faire : 
+- Regarder comment sont fait les cfg pour savoir comment ce sera le plus pratique de faire les boucles
 
 # Test de flexibilité du json :
 - Rajout d'un lien ?
