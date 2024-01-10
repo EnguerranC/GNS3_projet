@@ -1,5 +1,5 @@
 {
-    "111": {
+    "1": {
         "Nombre_routeur": 3,
         "Matrice_adjacence": [
             [
@@ -22,31 +22,39 @@
         "Matrice_adressage": [
             [
                 "",
-                "111:0:2::2/64",
-                "111:0:3::2/64"
+                "111:0:0:0:2::2/64",
+                "111:0:0:0:3::2/64"
             ],
             [
-                "111:0:2::1/64",
+                "111:0:0:0:2::1/64",
                 "",
-                "111:0:3::2/64"
+                "111:0:0:0:3::2/64"
             ],
             [
-                "111:0:3::1/64",
-                "111:0:3::1/64",
+                "111:0:0:0:3::1/64",
+                "111:0:0:0:3::1/64",
                 ""
             ]
         ],
-        "Routage_interne": {
+        "Donnees_routeurs": {
+            "1": {
+                "Nom": "",
+                "Dynamips_ID": 1,
+                "Attributs": ""
+            }
+        },
+        "Routage_intraAS": {
             "Protocol": "RIPng",
             "Attribut": ""
         },
-        "Routage_externe": {
+        "Routage_interAS": {
             "Protocol": "BGP",
-            "ID_routeur_bordeur": 3,
+            "Num_routeur_bordeur": 3,
+            "Remote_AS": 2,
             "Attribut": ""
         }
     },
-    "112": {
+    "2": {
         "Nombre_routeur": 3,
         "Matrice_adjacence": [
             [
@@ -69,27 +77,35 @@
         "Matrice_adressage": [
             [
                 "",
-                "112:0:2::2/64",
-                "112:0:3::2/64"
+                "112:0:0:0:2::2/64",
+                "112:0:0:0:3::2/64"
             ],
             [
-                "112:0:2::1/64",
+                "112:0:0:0:2::1/64",
                 "",
-                "112:0:3::2/64"
+                "112:0:0:0:3::2/64"
             ],
             [
-                "112:0:3::1/64",
-                "112:0:3::1/64",
+                "112:0:0:0:3::1/64",
+                "112:0:0:0:3::1/64",
                 ""
             ]
         ],
-        "Routage_interne": {
+        "Donnees_routeurs": {
+            "1": {
+                "Nom": "",
+                "Dynamips_ID": 1,
+                "Attributs": ""
+            }
+        },
+        "Routage_intraAS": {
             "Protocol": "OSPF",
             "Attribut": ""
         },
-        "Routage_externe": {
+        "Routage_interAS": {
             "Protocol": "BGP",
-            "ID_routeur_bordeur": 3,
+            "Num_routeur_bordeur": 3,
+            "Remote_AS": 1,
             "Attribut": ""
         }
     }
