@@ -40,8 +40,8 @@ Creation du dictionnaire vide
 """
 
 config = {
-     Nom_AS1 : { "Nombre_routeur" : N1 , "Matrice_adjacence" : M1 , "Masque_reseau" : Masque1 , "Matrice_adressage" : [["","",""],["","",""],["","",""]] , "Routage_interne" : { "Protocol" : Protocole_AS1 , "Attribut" : "" } , "Routage_externe" : { "Protocol" : "BGP" , "ID_routeur_bordeur" : ID_routeur_bordeur1 , "Attribut" : "" } },
-     Nom_AS2 : { "Nombre_routeur" : N2 , "Matrice_adjacence" : M2 , "Masque_reseau" : Masque2 , "Matrice_adressage" : [["","",""],["","",""],["","",""]] , "Routage_interne" : { "Protocol" : Protocole_AS2 , "Attribut" : "" } , "Routage_externe" : { "Protocol" : "BGP" , "ID_routeur_bordeur" : ID_routeur_bordeur2 , "Attribut" : "" } },
+     Nom_AS1 : { "Nombre_routeur" : N1 , "Matrice_adjacence" : M1 , "Masque_reseau" : Masque1 , "Matrice_adressage" : [["","",""],["","",""],["","",""]] , "Routage_intraAS" : { "Protocol" : Protocole_AS1 , "Attribut" : "" } , "Routage_interAS" : { "Protocol" : "BGP" , "ID_routeur_bordeur" : ID_routeur_bordeur1 , "Remote_AS" : Nom_AS2 , "Attribut" : "" } },
+     Nom_AS2 : { "Nombre_routeur" : N2 , "Matrice_adjacence" : M2 , "Masque_reseau" : Masque2 , "Matrice_adressage" : [["","",""],["","",""],["","",""]] , "Routage_intraAS" : { "Protocol" : Protocole_AS2 , "Attribut" : "" } , "Routage_interAS" : { "Protocol" : "BGP" , "ID_routeur_bordeur" : ID_routeur_bordeur2 , "Remote_AS" : Nom_AS1 , "Attribut" : "" } },
 }
 
 """ 
