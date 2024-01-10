@@ -5,7 +5,8 @@
 - Generateur d'un graphe d'adressage vide
 
 # Module à faire sur generateur_fichier_cfg :
-- 
+- Generateur d'ID des routeurs uniques
+- Generateur d'adresses loopbacks uniques à partir des ID des routeurs
 
 # Test de flexibilité du json :
 - Rajout d'un lien ?
