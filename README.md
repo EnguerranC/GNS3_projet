@@ -14,13 +14,6 @@ Automatisation de la generation du dictionnaire vide :
 Fonction :
 - Adressage_AS(Nom_As , Matrice_adjacence , Nombre_routeur) --> None : Configure les adresses des liens d'une AS dans le fichier json /FAIT
 
-# A definir : 
-Routage inter AS :
-- Mettre en forme le json BGP (quelles infos on met dedans...)
-- Des parties à automatiser ?
-- Definir les entrées à parametrer
-
-
 # Generateur_fichier_cfg pour chacun des routeurs :
 # / Création du cfg :
 - Verifier le dynamips_ID /A FAIRE
@@ -53,11 +46,14 @@ Routage inter AS :
 - Activer les loopback des routeurs de l'AS
 Remarque : Il me semble qu'il n'y a pas besoin de network advertisement pour les routeurs qui ne sont pas en bordure
 
-# A definir : 
-- Regarder comment sont fait les cfg pour savoir comment ce sera le plus pratique de faire les boucles
-
 # Json 
 - Rajouter les loopbacks dans le json pour simplifier le code ?
+
+# A definir : 
+Routage inter AS :
+- Mettre en forme le json BGP (quelles infos on met dedans...)
+- Des parties à automatiser ?
+- Definir les entrées à parametrer
 
 # Test de flexibilité du json :
 - Rajout d'un lien ?
