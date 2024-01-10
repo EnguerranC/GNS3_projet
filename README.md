@@ -17,8 +17,9 @@ Fonction :
 # Generateur_fichier_cfg pour chacun des routeurs :
 # / Création du cfg :
 - Verifier le dynamips_ID /A FAIRE
-- Creer/Remplacer les fichiers cfg "[Nom du routeur]_configs_i[Dynamips ID]_startup_config.cfg" dans le dossier "users/patri/GNS3/import/Config_reseau" /A MODIFIER
+- Creer/Remplacer les fichiers cfg "[Nom du routeur]_configs_i[Dynamips ID]_startup_config.cfg" dans le dossier "users/.../GNS3/import/Config_reseau" /A MODIFIER
   Remarque :
+  - Creer un dossier import pour que ca soit plus clair (au même endroit ou il y a deja le dossier projects)
   - Lors de la création de la config graphique sur GNS3 il faut que le nom des routeurs concordent
   - Standard des noms de routeurs : AS[Num_AS]_R[Num_routeur] (Ex : Le routeur de la deuxième ligne de l'AS 1 s'appelle AS1_R2 )
   - Le dynamips ID est un identifiant cree par GNS3 en fonction de l'ordre dans lequel on a placé les routeurs. L'ordre standard est Num_AS croissant > Num_routeur croissant
@@ -45,6 +46,11 @@ Fonction :
 - Set les neighbors avec la matrice d'adjacence et leur loopback associée
 - Activer les loopback des routeurs de l'AS
 Remarque : Il me semble qu'il n'y a pas besoin de network advertisement pour les routeurs qui ne sont pas en bordure
+
+# A FAIRE
+- Finir generateur de json
+- Finir generateur de cfg
+- Objectif : faire l'automatisation des protocols intra AS dans les 2 AS
 
 # Json 
 - Rajouter les loopbacks dans le json pour simplifier le code ?
