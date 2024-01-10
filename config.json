@@ -36,7 +36,8 @@
                 ""
             ]
         ],
-        "Protocole": "RIPng"
+        "Protocole": "RIPng",
+        "ID_routeur_bordeur": 3
     },
     "112": {
         "Nombre_routeur": 3,
@@ -75,6 +76,8 @@
                 ""
             ]
         ],
-        "Protocole": "OSPF"
-    }
+        "Protocole": "OSPF",
+        "ID_routeur_bordeur": 3
+    },
+    "BGP": {}
 }
