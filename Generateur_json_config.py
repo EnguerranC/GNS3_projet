@@ -13,6 +13,8 @@ Dynamips_ID = 1
 Num_AS1 = 1
 # Nombre de routeur
 N1 = 3
+#numeros des routers dans l'AS :
+L1 = [1,2,3]
 # Protocole interne
 Protocole_AS1 = "RIPng"
 # Graphe d'adjacence de taille N1xN1 (a modifier avec tableau plus comprehensibles)
@@ -28,6 +30,8 @@ Num_routeur_bordeur1 = 3
 Num_AS2 = 2
 # Nombre de routeur
 N2 = 3
+#numeros des routers dans l'AS :
+L2 = [4,5,6]
 # Protocole interne
 Protocole_AS2 = "OSPF" 
 # Graphe d'adjacence de taille N2xN2 (a modifier avec tableau plus comprehensibles)
