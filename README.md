@@ -14,6 +14,8 @@
 - Suppression d'un routeur ?
 - Rajout d'un routeur border ?
 - Suppression d'un router border ?
+- Changer le nom d'un router ?
+- Choisir le nom d'un routeur ?
 
 
 # Notes utiles
