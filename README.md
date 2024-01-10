@@ -1,10 +1,19 @@
 # Projet GNS3
 
-To-Do list
+# Module à faire sur generateur_json_config :
+- Generateur du graphe d'adjacence (plutôt que de le faire soi-même)
+
+# Module à faire sur generateur_fichier_cfg :
 - 
 
+# Test de flexibilité du json :
+- Rajout d'un lien
+- Suppression d'un lien
+- Rajout d'un routeur
+- Suppression d'un routeur
 
-Notes utiles
+
+# Notes utiles
 
 Localisation des fichiers cfg à modifier :
 Acer > Users > patri > GNS3 > projects > Nom_projet > project-files < dynamips > Nom_fichier_routeur_bizzare
