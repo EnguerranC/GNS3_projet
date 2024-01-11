@@ -3,9 +3,6 @@ import json
 """ 
 --- Parametre de la config reseau ---
 """
-# Temp
-Num_routeur = 1
-Dynamips_ID = 1
 
 """ AS 1 """
 
@@ -42,8 +39,8 @@ Masque2 = "112::0/40"
 Num_routeur_bordeur2 = 3
 
 """
-Automatisation de la generation du dictionnaire vide :
-- Generateur du graphe d'adjacence
+A rajouter plus tard :
+- Generateur du graphe d'adjacence à partir de tableau
 """
 
 # Generateur de la matrice d'adressage vide
