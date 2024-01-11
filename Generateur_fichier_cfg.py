@@ -6,7 +6,6 @@ with open("config.json", 'r') as fichier:
 
 
 nombre_routers = 0
-num_router=1
 liste_AS = list(config.keys())
 nombre_AS = len(liste_AS)
 
@@ -15,11 +14,15 @@ for i in range(nombre_AS):
 
 
 for i in range(nombre_AS) :
+    nombre_routers_AS = config[liste_AS[i]]["Nombre_routeur"]
+    liste_router = [config[liste_AS[i]]["Donnees_routeurs"][f"{j+1}"]["Dynamips_ID"] for j in range(nombre_routers_AS)]
+
     for j in range(config[liste_AS[i]]["Nombre_routeur"]) :
+        num_router = config[liste_AS[i]]["Donnees_routeurs"][f"{j+1}"]["Dynamips_ID"]
 
         with open("R" + str(num_router) + "_configs_i" + str(num_router) + "_startup-config.cfg",'w') as fichier_cfg :
 
-            fichier_cfg.writelines(['!\n', 'hostname R' + str(num_router) + '\n', '!\n'])
+            fichier_cfg.writelines(['!\n', 'hostname ' + config[liste_AS[i]]["Donnees_routeurs"][f"{j+1}"]["Nom"] + '\n', '!\n'])
             
             fichier_cfg.writelines(["ipv6 unicast-routing\n", '!\n'])
 
@@ -72,11 +75,9 @@ for i in range(nombre_AS) :
 
             for k in range(config[liste_AS[i]]["Nombre_routeur"] - 1) :
                 fichier_cfg.writelines([
-                    " neighbor 5000::" + str([e for e in config[liste_AS[i]]["Liste_router"] 
-                                              if e != num_router][k]) + " remote-as " + liste_AS[i]
+                    " neighbor 5000::" + str([e for e in liste_router if e != num_router][k]) + " remote-as " + liste_AS[i]
                                               + "\n",
-                    " neighbor 5000::" + str([e for e in config[liste_AS[i]]["Liste_router"] 
-                                              if e != num_router][k]) + " update-source Loopback0\n"
+                    " neighbor 5000::" + str([e for e in liste_router if e != num_router][k]) + " update-source Loopback0\n"
                 ])
 
             fichier_cfg.write("!\n")
@@ -87,4 +88,3 @@ for i in range(nombre_AS) :
                 "!\n",
                 "end"
             ])
-            num_router += 1
