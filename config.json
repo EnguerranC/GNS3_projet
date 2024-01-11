@@ -1,5 +1,5 @@
 {
-    "1": {
+    "AS1": {
         "Nombre_routeur": 3,
         "Matrice_adjacence": [
             [
@@ -38,8 +38,18 @@
         ],
         "Donnees_routeurs": {
             "1": {
-                "Nom": "",
+                "Nom": "AS1_R1",
                 "Dynamips_ID": 1,
+                "Attributs": ""
+            },
+            "2": {
+                "Nom": "AS1_R2",
+                "Dynamips_ID": 2,
+                "Attributs": ""
+            },
+            "3": {
+                "Nom": "AS1_R3",
+                "Dynamips_ID": 3,
                 "Attributs": ""
             }
         },
@@ -50,11 +60,11 @@
         "Routage_interAS": {
             "Protocol": "BGP",
             "Num_routeur_bordeur": 3,
-            "Remote_AS": 2,
+            "Remote_AS": "AS2",
             "Attribut": ""
         }
     },
-    "2": {
+    "AS2": {
         "Nombre_routeur": 3,
         "Matrice_adjacence": [
             [
@@ -93,8 +103,18 @@
         ],
         "Donnees_routeurs": {
             "1": {
-                "Nom": "",
-                "Dynamips_ID": 1,
+                "Nom": "AS2_R1",
+                "Dynamips_ID": 4,
+                "Attributs": ""
+            },
+            "2": {
+                "Nom": "AS2_R2",
+                "Dynamips_ID": 5,
+                "Attributs": ""
+            },
+            "3": {
+                "Nom": "AS2_R3",
+                "Dynamips_ID": 6,
                 "Attributs": ""
             }
         },
@@ -105,7 +125,7 @@
         "Routage_interAS": {
             "Protocol": "BGP",
             "Num_routeur_bordeur": 3,
-            "Remote_AS": 1,
+            "Remote_AS": "AS1",
             "Attribut": ""
         }
     }

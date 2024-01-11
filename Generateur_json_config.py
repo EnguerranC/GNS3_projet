@@ -44,13 +44,22 @@ Num_routeur_bordeur2 = 3
 """
 Automatisation de la generation du dictionnaire vide :
 - Generateur du graphe d'adjacence
-- Generateur du graphe vide
-- Generateur de la base de donnee des routeurs :
-   - Numero de routeur (unique seulement dans l'AS)
-   - Nom du routeur (Ex : AS1_R2)
-   - Dynamips_ID unique
 """
 
+# Generateur de la matrice d'adressage vide
+M_ad1 = []
+for i in range(N1) :
+   M_temp = []
+   for j in range(N1) :
+      M_temp.append("")
+   M_ad1.append(M_temp)
+
+M_ad2 = []
+for i in range(N2) :
+   M_temp = []
+   for j in range(N2) :
+      M_temp.append("")
+   M_ad2.append(M_temp)
 
 """
 Creation du dictionnaire vide
@@ -61,30 +70,8 @@ config = {
       "Nombre_routeur":N1,
       "Matrice_adjacence":M1,
       "Masque_reseau":Masque1,
-      "Matrice_adressage":[
-         [
-            "",
-            "",
-            ""
-         ],
-         [
-            "",
-            "",
-            ""
-         ],
-         [
-            "",
-            "",
-            ""
-         ]
-      ],
+      "Matrice_adressage":M_ad1,
       "Donnees_routeurs":{
-           Num_routeur :{ "Nom":"" , "Dynamips_ID" : Dynamips_ID , "Attributs":""
-                
-           },
-           Num_routeur :{ "Nom":"" , "Dynamips_ID" : Dynamips_ID , "Attributs":""
-                
-           }
       },
       "Routage_intraAS":{
          "Protocol":Protocole_AS1,
@@ -101,30 +88,8 @@ config = {
       "Nombre_routeur":N2,
       "Matrice_adjacence":M2,
       "Masque_reseau":Masque2,
-      "Matrice_adressage":[
-         [
-            "",
-            "",
-            ""
-         ],
-         [
-            "",
-            "",
-            ""
-         ],
-         [
-            "",
-            "",
-            ""
-         ]
-      ],
-      "Donnees_routeurs":{
-           Num_routeur :{ "Nom":"" , "Dynamips_ID" : Dynamips_ID , "Attributs":""
-                
-           },
-           Num_routeur :{ "Nom":"" , "Dynamips_ID" : Dynamips_ID , "Attributs":""
-                
-           }
+      "Matrice_adressage":M_ad2,
+      "Donnees_routeurs":{     
       },
       "Routage_intraAS":{
          "Protocol":Protocole_AS2,
@@ -139,18 +104,26 @@ config = {
    }
 }
 
+# Generateur de la base de donnee des routeurs : Num_routeur, Nom, Dynamips_ID
+Dynamips_ID = 1
+for i in range(1,3) :
+   for j in range(1,globals()["N"+str(i)]+1) :
+      Num_routeur = j
+      config["AS"+str(i)]["Donnees_routeurs"][Num_routeur] = {"Nom":"AS"+str(i)+"_R"+str(j) , "Dynamips_ID":Dynamips_ID  , "Attributs":""}
+      Dynamips_ID = Dynamips_ID +1
+
 """ 
 Fonction Adressage_AS(Nom_As , Matrice_adjacence , Nombre_routeur) --> None
 Configure les adresses des liens d'une AS dans le fichier json
 """
-def Adressage_AS(Nom_AS , Matrice_adjacence, Nombre_routeur) :
+def Adressage_AS(Num_AS , Matrice_adjacence, Nombre_routeur) :
         for i in range(Nombre_routeur) :
             for j in range(Nombre_routeur) :
                 if Matrice_adjacence[i][j] :
-                     adresse_unique1 = config[Nom_AS]["Masque_reseau"][:3]+":0:0:0:"+str(i+1)+"::"+"1/64"
-                     adresse_unique2 = config[Nom_AS]["Masque_reseau"][:3]+":0:0:0:"+str(i+1)+"::"+"2/64"
-                     config[Nom_AS]["Matrice_adressage"][i][j] = adresse_unique1
-                     config[Nom_AS]["Matrice_adressage"][j][i] = adresse_unique2
+                     adresse_unique1 = config[Num_AS]["Masque_reseau"][:3]+":0:0:0:"+str(i+1)+"::"+"1/64"
+                     adresse_unique2 = config[Num_AS]["Masque_reseau"][:3]+":0:0:0:"+str(i+1)+"::"+"2/64"
+                     config[Num_AS]["Matrice_adressage"][i][j] = adresse_unique1
+                     config[Num_AS]["Matrice_adressage"][j][i] = adresse_unique2
                      
 
 """
