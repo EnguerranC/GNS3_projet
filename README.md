@@ -3,9 +3,9 @@
 
 # Generateur_json_config :
 Automatisation de la generation du dictionnaire vide :
-- Generateur du graphe d'adjacence (plutôt que de le faire soi-même) à partir de tableaux plus simples à comprendre (Ex : R1 = [R2,R3,R4]) /A FAIRE
-- Generateur d'un graphe d'adressage vide /A FAIRE
-- Generateur de la base de donnée des routeurs /A FAIRE
+- Generateur du graphe d'adjacence (plutôt que de le faire soi-même) à partir de tableaux plus simples à comprendre (Ex : R1 = [R2,R3,R4]) /A FAIRE PLUS TARD
+- Generateur d'un graphe d'adressage vide /FAIT
+- Generateur de la base de donnée des routeurs /FAIT
   Remarque :
   - Chaque routeur a un numero de routeur (unique seulement dans l'AS)
   - Chaque routeur a un nom généré automatiquement (Ex : AS2_R1 )
@@ -48,7 +48,7 @@ Fonction :
 Remarque : Il me semble qu'il n'y a pas besoin de network advertisement pour les routeurs qui ne sont pas en bordure
 
 # A FAIRE
-- Finir generateur de json
+- Finir generateur de json /FAIT
 - Finir generateur de cfg
 - Objectif : faire l'automatisation des protocols intra AS dans les 2 AS
 
