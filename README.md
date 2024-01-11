@@ -2,10 +2,11 @@
 
 
 # Generateur_json_config :
+
+# / Programme
 Automatisation de la generation du dictionnaire vide :
-- Generateur du graphe d'adjacence à partir d'une interface graphique ? (Ex : R1 = [R2,R3,R4]) /A FAIRE PLUS TARD
-- Generateur d'un graphe d'adressage vide /FAIT
-- Generateur de la base de donnée des routeurs /FAIT
+- Generateur d'un graphe d'adressage vide
+- Generateur de la base de donnée des routeurs
   Remarque :
   - Chaque routeur a un numero de routeur (unique seulement dans l'AS)
   - Chaque routeur a un nom généré automatiquement (Ex : AS2_R1 )
@@ -14,7 +15,12 @@ Automatisation de la generation du dictionnaire vide :
 Fonction :
 - Adressage_AS(Nom_As , Matrice_adjacence , Nombre_routeur) --> None : Configure les adresses des liens d'une AS dans le fichier json /FAIT
 
+# / Json
+- Rajouter les loopbacks dans le json pour simplifier le code ?
+
+
 # Generateur_fichier_cfg pour chacun des routeurs :
+
 # / Création du cfg :
 - Verifier le dynamips_ID /A FAIRE
 - Creer/Remplacer les fichiers cfg "[Nom du routeur]_configs_i[Dynamips ID]_startup_config.cfg" dans le dossier "users/.../GNS3/import/Config_reseau" /A MODIFIER
@@ -47,21 +53,15 @@ Fonction :
 - Activer les loopback des routeurs de l'AS
 Remarque : Il me semble qu'il n'y a pas besoin de network advertisement pour les routeurs qui ne sont pas en bordure
 
+
 # A FAIRE
+Obj : Configurer les AS séparées avec leur protocol de routage intra AS
 - Finir generateur de json /FAIT
-- Finir generateur de cfg
-- Objectif : faire l'automatisation des protocols intra AS dans les 2 AS
+- Finir generateur de cfg /ENGUERRAN
+Obj : A definir
 
-# Json 
-- Rajouter les loopbacks dans le json pour simplifier le code ?
 
-# A definir : 
-Routage inter AS :
-- Mettre en forme le json BGP (quelles infos on met dedans...)
-- Des parties à automatiser ?
-- Definir les entrées à parametrer
-
-# Test de flexibilité du json :
+# Test de flexibilité de l'automatisation :
 - Rajout d'un lien ?
 - Suppression d'un lien ?
 - Rajout d'un routeur ?
@@ -70,6 +70,3 @@ Routage inter AS :
 - Suppression d'un router border ?
 - Changer le nom d'un router ?
 - Choisir le nom d'un routeur ?
-
-
-# Notes utiles
