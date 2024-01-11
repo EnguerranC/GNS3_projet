@@ -41,11 +41,12 @@ for i in range(nombre_AS) :
             fichier_cfg.write('!\n')
 
             ######### interfaces ########
-
+            
+            num=1
             for k in range(config[liste_AS[i]]["Nombre_routeur"]) :
                 if config[liste_AS[i]]["Matrice_adjacence"][j][k] == 1 : #s'il y a un lien on crée une interface
                     fichier_cfg.writelines([
-                        "interface GigabitEthernet" + str(k+1) + "/0\n",
+                        "interface GigabitEthernet" + str(num) + "/0\n",
                         " no ip address\n"
                         " negotiation auto\n",
                         " ipv6 address " + config[liste_AS[i]]["Matrice_adressage"][j][k] + "\n",
@@ -61,6 +62,7 @@ for i in range(nombre_AS) :
                             " ipv6 ospf " + liste_AS[i] + " area " + liste_AS[i] + "\n"
                         ])
                     fichier_cfg.write("!\n")
+                    num+=1
 
             ######### routage bgp ########
             
