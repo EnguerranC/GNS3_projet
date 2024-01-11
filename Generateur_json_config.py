@@ -9,13 +9,17 @@ import json
 # Num AS
 Num_AS1 = "AS1"
 # Nombre de routeur
-N1 = 3
+N1 = 4
 #numeros des routers dans l'AS :
 L1 = [1,2,3]
 # Protocole interne
 Protocole_AS1 = "RIPng"
-# Graphe d'adjacence de taille N1xN1 (a modifier avec tableau plus comprehensibles)
-M1 = [[0,1,1],[1,0,1],[1,1,0]]
+# Graphe d'adjacence de taille N1xN1
+M1 = [[0,0,0,0],
+      [0,0,1,0],
+      [0,1,0,1],
+      [0,0,1,0]]
+
 # Masque reseau
 Masque1 = "111::0/40"
 # Routeur bordeur
@@ -117,8 +121,8 @@ def Adressage_AS(Num_AS , Matrice_adjacence, Nombre_routeur) :
         for i in range(Nombre_routeur) :
             for j in range(Nombre_routeur) :
                 if Matrice_adjacence[i][j] :
-                     adresse_unique1 = config[Num_AS]["Masque_reseau"][:3]+":0:0:0:"+str(i+1)+"::"+"1/64"
-                     adresse_unique2 = config[Num_AS]["Masque_reseau"][:3]+":0:0:0:"+str(i+1)+"::"+"2/64"
+                     adresse_unique1 = config[Num_AS]["Masque_reseau"][:3]+":0:0:"+str(i+1)+"::"+"1/64"
+                     adresse_unique2 = config[Num_AS]["Masque_reseau"][:3]+":0:0:"+str(i+1)+"::"+"2/64"
                      config[Num_AS]["Matrice_adressage"][i][j] = adresse_unique1
                      config[Num_AS]["Matrice_adressage"][j][i] = adresse_unique2
                      
