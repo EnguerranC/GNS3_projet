@@ -3,7 +3,7 @@
 
 # Generateur_json_config :
 Automatisation de la generation du dictionnaire vide :
-- Generateur du graphe d'adjacence (plutôt que de le faire soi-même) à partir de tableaux plus simples à comprendre (Ex : R1 = [R2,R3,R4]) /A FAIRE PLUS TARD
+- Generateur du graphe d'adjacence à partir d'une interface graphique ? (Ex : R1 = [R2,R3,R4]) /A FAIRE PLUS TARD
 - Generateur d'un graphe d'adressage vide /FAIT
 - Generateur de la base de donnée des routeurs /FAIT
   Remarque :
