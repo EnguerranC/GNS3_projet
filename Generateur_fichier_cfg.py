@@ -105,6 +105,9 @@ for i in range(nombre_AS) :
                         if config[liste_AS[i]]["Matrice_adjacence"][k][l] == 1 and masque_reseau(config[liste_AS[i]]["Matrice_adressage"][k][l]) not in liste_masque :
                             fichier_cfg.write("  network " + masque_reseau(config[liste_AS[i]]["Matrice_adressage"][k][l]) + "\n")
                             liste_masque.append(masque_reseau(config[liste_AS[i]]["Matrice_adressage"][k][l]))
+            for k in range(config[liste_AS[i]]["Nombre_routeur"] - 1) :
+                fichier_cfg.write("  neighbor 5000::" + str([e for e in liste_router if e != num_router][k]) + " activate\n")
+            fichier_cfg.writelines([" exit-address-family\n", "!\n"])
 
 
 
