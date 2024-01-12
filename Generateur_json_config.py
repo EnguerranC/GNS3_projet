@@ -7,7 +7,7 @@ import json
 """ AS 1 """
 
 # Num AS
-Num_AS1 = "AS1"
+Num_AS1 = 1
 # Nombre de routeur
 N1 = 4
 #numeros des routers dans l'AS :
@@ -15,8 +15,8 @@ L1 = [1,2,3]
 # Protocole interne
 Protocole_AS1 = "RIPng"
 # Graphe d'adjacence de taille N1xN1
-M1 = [[0,0,0,0],
-      [0,0,1,0],
+M1 = [[0,1,0,0],
+      [1,0,1,0],
       [0,1,0,1],
       [0,0,1,0]]
 
@@ -28,7 +28,7 @@ Num_routeur_bordeur1 = 3
 """ AS 2 """
 
 # Num AS
-Num_AS2 = "AS2"
+Num_AS2 = 2
 # Nombre de routeur
 N2 = 3
 #numeros des routers dans l'AS :
@@ -36,7 +36,7 @@ L2 = [4,5,6]
 # Protocole interne
 Protocole_AS2 = "OSPF" 
 # Graphe d'adjacence de taille N2xN2 (a modifier avec tableau plus comprehensibles)
-M2 = [[0,1,1],[1,0,1],[1,1,0]]
+M2 = [[0,1,0],[1,0,1],[0,1,0]]
 # Masque reseau
 Masque2 = "112::0/40"
 # Routeur bordeur
@@ -110,7 +110,7 @@ Dynamips_ID = 1
 for i in range(1,3) :
    for j in range(1,globals()["N"+str(i)]+1) :
       Num_routeur = j
-      config["AS"+str(i)]["Donnees_routeurs"][Num_routeur] = {"Nom":"AS"+str(i)+"_R"+str(j) , "Dynamips_ID":Dynamips_ID  , "Attributs":""}
+      config[i]["Donnees_routeurs"][Num_routeur] = {"Nom":"AS"+str(i)+"_R"+str(j) , "Dynamips_ID":Dynamips_ID  , "Attributs":""}
       Dynamips_ID = Dynamips_ID +1
 
 """ 
