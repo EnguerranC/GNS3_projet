@@ -27,7 +27,7 @@ for i in range(nombre_AS) :
     for j in range(config[liste_AS[i]]["Nombre_routeur"]) :
         num_router = config[liste_AS[i]]["Donnees_routeurs"][f"{j+1}"]["Dynamips_ID"]
 
-        with open("R" + str(num_router) + "_configs_i" + str(num_router) + "_startup-config.cfg",'w') as fichier_cfg :
+        with open(config[liste_AS[i]]["Donnees_routeurs"][f"{j+1}"]["Nom"] + "_configs_i" + str(num_router) + "_startup-config.cfg",'w') as fichier_cfg :
 
             fichier_cfg.writelines(['!\n', 'hostname ' + config[liste_AS[i]]["Donnees_routeurs"][f"{j+1}"]["Nom"] + '\n', '!\n'])
             
@@ -94,7 +94,7 @@ for i in range(nombre_AS) :
             fichier_cfg.write(" !\n")
 
             fichier_cfg.write(" address-family ipv6\n")
-            if config[liste_AS[i]]["Routage_interAS"]["Num_routeur_bordeur"] != j :
+            if config[liste_AS[i]]["Routage_interAS"]["Num_routeur_bordeur"] != j+1 :
                 for k in range(nombre_routers_AS) :
                     if config[liste_AS[i]]["Matrice_adjacence"][j][k] == 1 and config[liste_AS[i]]["Routage_interAS"]["Num_routeur_bordeur"] != k+1 :  #on recupere le masque reseau
                         fichier_cfg.write("  network " + masque_reseau(config[liste_AS[i]]["Matrice_adressage"][j][k]) + "\n")
