@@ -27,7 +27,7 @@ for i in range(nombre_AS) :
     for j in range(config[liste_AS[i]]["Nombre_routeur"]) :
         num_router = config[liste_AS[i]]["Donnees_routeurs"][f"{j+1}"]["Dynamips_ID"]
 
-        with open(config[liste_AS[i]]["Donnees_routeurs"][f"{j+1}"]["Nom"] + "_configs_i" + str(num_router) + "_startup-config.cfg",'w') as fichier_cfg :
+        with open('R' + str(config[liste_AS[i]]["Donnees_routeurs"][f"{j+1}"]["Dynamips_ID"]) + "_configs_i" + str(num_router) + "_startup-config.cfg",'w') as fichier_cfg :
 
             fichier_cfg.writelines(['!\n', 'hostname ' + config[liste_AS[i]]["Donnees_routeurs"][f"{j+1}"]["Nom"] + '\n', '!\n'])
             
@@ -108,9 +108,6 @@ for i in range(nombre_AS) :
             for k in range(config[liste_AS[i]]["Nombre_routeur"] - 1) :
                 fichier_cfg.write("  neighbor 5000::" + str([e for e in liste_router if e != num_router][k]) + " activate\n")
             fichier_cfg.writelines([" exit-address-family\n", "!\n"])
-
-
-
             
             ######### end ########
                 
