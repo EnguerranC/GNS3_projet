@@ -40,7 +40,7 @@ for i in range(nombre_AS) :
                     " no ip address\n",
                     " ipv6 address 5000::" + str(num_router) + "/128\n"
                             ])
-            if config[liste_AS[i]]["Routage_intraAS"]["Protocol"] == "OSPF" : 
+            if config[liste_AS[i]]["Routage_intraAS"]["Protocol"] == "OSPF" : # // Rajouter le protocol RIP aussi dans les loopback même si en soit c'est pas vraiment utile
                 fichier_cfg.writelines([
                     " ipv6 enable\n", 
                     " ipv6 ospf " + liste_AS[i] + " area " + liste_AS[i] + "\n"
@@ -52,8 +52,8 @@ for i in range(nombre_AS) :
             ######### interfaces ########
 
             num=1
-            for k in range(config[liste_AS[i]]["Nombre_routeur"]) :
-                if config[liste_AS[i]]["Matrice_adjacence"][j][k] == 1 : #s'il y a un lien on crée une interface
+            for k in range(config[liste_AS[i]]["Nombre_routeur"]) : 
+                if config[liste_AS[i]]["Matrice_adjacence"][j][k] == 1 : # S'il y a un lien on crée une interface
                     fichier_cfg.writelines([
                         "interface GigabitEthernet" + str(num) + "/0\n",
                         " no ip address\n"
