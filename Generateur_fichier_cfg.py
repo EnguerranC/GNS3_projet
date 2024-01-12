@@ -108,6 +108,12 @@ for i in range(nombre_AS) :
             for k in range(config[liste_AS[i]]["Nombre_routeur"] - 1) :
                 fichier_cfg.write("  neighbor 5000::" + str([e for e in liste_router if e != num_router][k]) + " activate\n")
             fichier_cfg.writelines([" exit-address-family\n", "!\n"])
+            if config[liste_AS[i]]["Routage_intraAS"]["Protocol"] == "OSPF" :
+                fichier_cfg.writelines([
+                    "ipv6 router ospf " + liste_AS[i] + "\n",
+                    " router-id " + 3*(str(num_router) + ".") + str(num_router) + "\n",
+                    "!\n"
+                ])
             
             ######### end ########
                 
