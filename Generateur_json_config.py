@@ -22,8 +22,6 @@ M1 = [[0,1,0,0],
 
 # Masque reseau interface physique
 Masque1 = "111::0/40"
-# Masque reseau interface loopback
-Masque2_loopback = ""
 # Routeur bordeur
 Num_routeur_bordeur1 = 3
 
@@ -41,8 +39,6 @@ Protocole_AS2 = "OSPF"
 M2 = [[0,1,0],[1,0,1],[0,1,0]]
 # Masque reseau interface physique
 Masque2 = "112::0/40"
-# Masque reseau interface loopback
-Masque2_loopback = ""
 # Routeur bordeur
 Num_routeur_bordeur2 = 3
 
