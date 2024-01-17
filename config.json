@@ -28,30 +28,78 @@
             ]
         ],
         "Masque_reseau": "111::0/40",
-        "Matrice_adressage": [
+        "Matrice_adressage_interface": [
             [
-                "",
-                "111:0:0:2::2/64",
-                "",
-                ""
+                [
+                    "",
+                    ""
+                ],
+                [
+                    "111:0:0:1::2/64",
+                    "GigabitEthernet2/0"
+                ],
+                [
+                    "",
+                    ""
+                ],
+                [
+                    "",
+                    ""
+                ]
             ],
             [
-                "111:0:0:2::1/64",
-                "",
-                "111:0:0:3::2/64",
-                ""
+                [
+                    "111:0:0:1::1/64",
+                    "GigabitEthernet2/0"
+                ],
+                [
+                    "",
+                    ""
+                ],
+                [
+                    "111:0:0:2::2/64",
+                    "GigabitEthernet2/0"
+                ],
+                [
+                    "",
+                    ""
+                ]
             ],
             [
-                "",
-                "111:0:0:3::1/64",
-                "",
-                "111:0:0:4::2/64"
+                [
+                    "",
+                    ""
+                ],
+                [
+                    "111:0:0:2::1/64",
+                    "GigabitEthernet2/0"
+                ],
+                [
+                    "",
+                    ""
+                ],
+                [
+                    "111:0:0:3::2/64",
+                    "GigabitEthernet2/0"
+                ]
             ],
             [
-                "",
-                "",
-                "111:0:0:4::1/64",
-                ""
+                [
+                    "",
+                    ""
+                ],
+                [
+                    "",
+                    ""
+                ],
+                [
+                    "111:0:0:3::1/64",
+                    "GigabitEthernet2/0"
+                ],
+                [
+                    "",
+                    ""
+                ]
             ]
         ],
         "Donnees_routeurs": {
@@ -81,10 +129,12 @@
             "Attribut": ""
         },
         "Routage_interAS": {
-            "Protocol": "BGP",
-            "Num_routeur_bordeur": 3,
-            "Remote_AS": 2,
-            "Attribut": ""
+            "3": {
+                "2": {
+                    "Protocole": "BGP",
+                    "Adresse": ""
+                }
+            }
         }
     },
     "2": {
@@ -107,21 +157,48 @@
             ]
         ],
         "Masque_reseau": "112::0/40",
-        "Matrice_adressage": [
+        "Matrice_adressage_interface": [
             [
-                "",
-                "112:0:0:2::2/64",
-                ""
+                [
+                    "",
+                    ""
+                ],
+                [
+                    "112:0:0:1::2/64",
+                    "GigabitEthernet2/0"
+                ],
+                [
+                    "",
+                    ""
+                ]
             ],
             [
-                "112:0:0:2::1/64",
-                "",
-                "112:0:0:3::2/64"
+                [
+                    "112:0:0:1::1/64",
+                    "GigabitEthernet2/0"
+                ],
+                [
+                    "",
+                    ""
+                ],
+                [
+                    "112:0:0:2::2/64",
+                    "GigabitEthernet2/0"
+                ]
             ],
             [
-                "",
-                "112:0:0:3::1/64",
-                ""
+                [
+                    "",
+                    ""
+                ],
+                [
+                    "112:0:0:2::1/64",
+                    "GigabitEthernet2/0"
+                ],
+                [
+                    "",
+                    ""
+                ]
             ]
         ],
         "Donnees_routeurs": {
@@ -146,10 +223,12 @@
             "Attribut": ""
         },
         "Routage_interAS": {
-            "Protocol": "BGP",
-            "Num_routeur_bordeur": 3,
-            "Remote_AS": 1,
-            "Attribut": ""
+            "3": {
+                "1": {
+                    "Protocole": "BGP",
+                    "Adresse": ""
+                }
+            }
         }
     }
 }
