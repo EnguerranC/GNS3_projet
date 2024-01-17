@@ -86,8 +86,7 @@ for i in range(nombre_AS) :
 
             for k in range(config[liste_AS[i]]["Nombre_routeur"] - 1) :
                 fichier_cfg.writelines([
-                    " neighbor 5000::" + str([e for e in liste_router if e != num_router][k]) + " remote-as " + liste_AS[i]
-                                              + "\n",
+                    " neighbor 5000::" + str([e for e in liste_router if e != num_router][k]) + " remote-as " + liste_AS[i] + "\n",
                     " neighbor 5000::" + str([e for e in liste_router if e != num_router][k]) + " update-source Loopback0\n"
                 ])
 
@@ -110,7 +109,7 @@ for i in range(nombre_AS) :
 
             for k in range(config[liste_AS[i]]["Nombre_routeur"] - 1) :
                 fichier_cfg.write("  neighbor 5000::" + str([e for e in liste_router if e != num_router][k]) + " activate\n")
-                
+
             fichier_cfg.writelines([" exit-address-family\n", "!\n"])
 
             if config[liste_AS[i]]["Routage_intraAS"]["Protocol"] == "OSPF" :

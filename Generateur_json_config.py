@@ -126,13 +126,19 @@ Fonction Adressage_AS(Nom_As , Matrice_adjacence , Nombre_routeur) --> None
 Configure les adresses des liens d'une AS dans le fichier json
 """
 def Adressage_AS(Num_AS , Matrice_adjacence, Nombre_routeur) :
+        nb_connexions = [0 for i in range(Nombre_routeur)]
         for i in range(Nombre_routeur) :
-            for j in range(Nombre_routeur) :
+            for j in range(i,Nombre_routeur) :
                if Matrice_adjacence[i][j] :
+                  nb_connexions[i]+=1
+                  nb_connexions[j]+=1
+                  interface1 = "GigabitEthernet" + str(nb_connexions[i]) + "/0"
+                  interface2 = "GigabitEthernet" + str(nb_connexions[j]) + "/0"
+
                   adresse_unique1 = config[Num_AS]["Masque_reseau"][:3]+":0:0:"+str(i+1)+"::"+"1/64"
                   adresse_unique2 = config[Num_AS]["Masque_reseau"][:3]+":0:0:"+str(i+1)+"::"+"2/64"
-                  config[Num_AS]["Matrice_adressage"][i][j] = adresse_unique1
-                  config[Num_AS]["Matrice_adressage"][j][i] = adresse_unique2
+                  config[Num_AS]["Matrice_adressage"][i][j] = [adresse_unique1,interface1]
+                  config[Num_AS]["Matrice_adressage"][j][i] = [adresse_unique2, interface2]
                
                      
 
