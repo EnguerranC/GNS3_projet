@@ -190,12 +190,7 @@
                     "Adresse": ""
                 }
             }
-            "3": {
-                "1": {
-                    "Protocole": "BGP",
-                    "Adresse": ""
-                }
-            }
+    
         }
     }
 }

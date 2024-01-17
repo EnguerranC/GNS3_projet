@@ -135,8 +135,7 @@ def Adressage_AS(Num_AS , Matrice_adjacence, Nombre_routeur) :
                   config[Num_AS]["Matrice_adressage"][i][j] = [adresse_unique1,interface1]
                   config[Num_AS]["Matrice_adressage"][j][i] = [adresse_unique2, interface2]
                
-                     
-
+               
 """
 Programme principal
 """
