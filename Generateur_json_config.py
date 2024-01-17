@@ -79,10 +79,12 @@ config = {
          "Attribut":""
       },
       "Routage_interAS":{
-         "Protocol":"BGP",
-         "Num_routeur_bordeur":Num_routeur_bordeur1,
-         "Remote_AS":Num_AS2,
-         "Attribut":""
+         Num_routeur_bordeur1 : {
+            Num_AS2 : {
+               "Protocole" : "BGP"
+               "Adresse": ""
+         }
+         }
       }
    },
    Num_AS2:{
