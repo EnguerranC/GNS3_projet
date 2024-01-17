@@ -22,8 +22,6 @@ M1 = [[0,1,0,0],
 
 # Masque reseau interface physique
 Masque1 = "111::0/40"
-# Masque reseau interface loopback
-Masque2_loopback = ""
 # Routeur bordeur
 Num_routeur_bordeur1 = 3
 
@@ -41,8 +39,6 @@ Protocole_AS2 = "OSPF"
 M2 = [[0,1,0],[1,0,1],[0,1,0]]
 # Masque reseau interface physique
 Masque2 = "112::0/40"
-# Masque reseau interface loopback
-Masque2_loopback = ""
 # Routeur bordeur
 Num_routeur_bordeur2 = 3
 
@@ -134,9 +130,8 @@ def Adressage_AS(Num_AS , Matrice_adjacence, Nombre_routeur) :
                   adresse_unique1 = config[Num_AS]["Masque_reseau"][:3]+":0:0:"+str(i+1)+"::"+"1/64"
                   adresse_unique2 = config[Num_AS]["Masque_reseau"][:3]+":0:0:"+str(i+1)+"::"+"2/64"
                   config[Num_AS]["Matrice_adressage_interface"][i][j] = [adresse_unique1,interface1]
-                  config[Num_AS]["Matrice_adressage_interface"][j][i] = [adresse_unique2, interface2]
-               
-               
+                  config[Num_AS]["Matrice_adressage_interface"][j][i] = [adresse_unique2, interface2]          
+
 """
 Programme principal
 """
