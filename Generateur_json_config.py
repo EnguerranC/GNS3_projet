@@ -61,6 +61,7 @@ def Matrice_addressage_vide(M_ad, N) :
 M_ad1, M_ad2 = [], []
 Matrice_addressage_vide(M_ad1, N1)
 Matrice_addressage_vide(M_ad2, N2)
+
 """
 Creation du dictionnaire vide
 """
@@ -132,16 +133,16 @@ def Adressage_AS(Num_AS , Matrice_adjacence, Nombre_routeur) :
 
                   adresse_unique1 = config[Num_AS]["Masque_reseau"][:3]+":0:0:"+str(i+1)+"::"+"1/64"
                   adresse_unique2 = config[Num_AS]["Masque_reseau"][:3]+":0:0:"+str(i+1)+"::"+"2/64"
-                  config[Num_AS]["Matrice_adressage"][i][j] = [adresse_unique1,interface1]
-                  config[Num_AS]["Matrice_adressage"][j][i] = [adresse_unique2, interface2]
+                  config[Num_AS]["Matrice_adressage_interface"][i][j] = [adresse_unique1,interface1]
+                  config[Num_AS]["Matrice_adressage_interface"][j][i] = [adresse_unique2, interface2]
                
                      
 
 """
 Programme principal
 """
-Adressage_AS(Num_AS1,M1,N1,M_ad1) # Adressage de l'AS1
-Adressage_AS(Num_AS2,M2,N2,M_ad2) # Adressage de l'AS2
+Adressage_AS(Num_AS1,M1,N1) # Adressage de l'AS1
+Adressage_AS(Num_AS2,M2,N2) # Adressage de l'AS2
 
 fichier = open("config.json","w") # Creation du fichier json
 json.dump(config, fichier, indent=4)
