@@ -36,7 +36,7 @@ N2 = 3
 #numeros des routers dans l'AS :
 L2 = [4,5,6]
 # Protocole interne
-Protocole_AS2 = "OSPF" 
+Protocole_AS2 = "OSPF"
 # Graphe d'adjacence de taille N2xN2
 M2 = [[0,1,0],[1,0,1],[0,1,0]]
 # Masque reseau interface physique
@@ -52,20 +52,15 @@ A rajouter plus tard :
 """
 
 # Generateur de la matrice d'adressage vide
-M_ad1 = []
-for i in range(N1) :
-   M_temp = []
-   for j in range(N1) :
-      M_temp.append("")
-   M_ad1.append(M_temp)
-
-M_ad2 = []
-for i in range(N2) :
-   M_temp = []
-   for j in range(N2) :
-      M_temp.append("")
-   M_ad2.append(M_temp)
-
+def Matrice_addressage_vide(M_ad, N) :
+   for i in range(N) :
+      M_temp = []
+      for j in range(N) :
+         M_temp.append(["",""])
+      M_ad.append(M_temp)
+M_ad1, M_ad2 = [], []
+Matrice_addressage_vide(M_ad1, N1)
+Matrice_addressage_vide(M_ad2, N2)
 """
 Creation du dictionnaire vide
 """
@@ -75,7 +70,7 @@ config = {
       "Nombre_routeur":N1,
       "Matrice_adjacence":M1,
       "Masque_reseau":Masque1,
-      "Matrice_adressage":M_ad1,
+      "Matrice_adressage_interface": M_ad1,
       "Donnees_routeurs":{
       },
       "Routage_intraAS":{
@@ -95,7 +90,7 @@ config = {
       "Nombre_routeur":N2,
       "Matrice_adjacence":M2,
       "Masque_reseau":Masque2,
-      "Matrice_adressage":M_ad2,
+      "Matrice_adressage_interface":M_ad2,
       "Donnees_routeurs":{     
       },
       "Routage_intraAS":{
@@ -145,8 +140,8 @@ def Adressage_AS(Num_AS , Matrice_adjacence, Nombre_routeur) :
 """
 Programme principal
 """
-Adressage_AS(Num_AS1,M1,N1) # Adressage de l'AS1
-Adressage_AS(Num_AS2,M2,N2) # Adressage de l'AS2
+Adressage_AS(Num_AS1,M1,N1,M_ad1) # Adressage de l'AS1
+Adressage_AS(Num_AS2,M2,N2,M_ad2) # Adressage de l'AS2
 
 fichier = open("config.json","w") # Creation du fichier json
 json.dump(config, fichier, indent=4)

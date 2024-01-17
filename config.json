@@ -28,7 +28,7 @@
             ]
         ],
         "Masque_reseau": "111::0/40",
-        "Matrice_adressage": [
+        "Matrice_adressage_interface": [
             [
                 "",
                 [
@@ -105,6 +105,12 @@
                     "Adresse": ""
                 }
             }
+            "3": {
+                "2": {
+                    "Protocole": "BGP",
+                    "Adresse": ""
+                }
+            }
         }
     },
     "2": {
@@ -127,7 +133,7 @@
             ]
         ],
         "Masque_reseau": "112::0/40",
-        "Matrice_adressage": [
+        "Matrice_adressage_interface": [
             [
                 "",
                 [
@@ -178,6 +184,12 @@
             "Attribut": ""
         },
         "Routage_interAS": {
+            "3": {
+                "1": {
+                    "Protocole": "BGP",
+                    "Adresse": ""
+                }
+            }
             "3": {
                 "1": {
                     "Protocole": "BGP",
