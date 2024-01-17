@@ -20,8 +20,10 @@ M1 = [[0,1,0,0],
       [0,1,0,1],
       [0,0,1,0]]
 
-# Masque reseau
+# Masque reseau interface physique
 Masque1 = "111::0/40"
+# Masque reseau interface loopback
+Masque2_loopback = ""
 # Routeur bordeur
 Num_routeur_bordeur1 = 3
 
@@ -35,10 +37,12 @@ N2 = 3
 L2 = [4,5,6]
 # Protocole interne
 Protocole_AS2 = "OSPF" 
-# Graphe d'adjacence de taille N2xN2 (a modifier avec tableau plus comprehensibles)
+# Graphe d'adjacence de taille N2xN2
 M2 = [[0,1,0],[1,0,1],[0,1,0]]
-# Masque reseau
+# Masque reseau interface physique
 Masque2 = "112::0/40"
+# Masque reseau interface loopback
+Masque2_loopback = ""
 # Routeur bordeur
 Num_routeur_bordeur2 = 3
 
