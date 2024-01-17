@@ -94,10 +94,12 @@ for i in range(nombre_AS) :
             fichier_cfg.write(" !\n")
 
             fichier_cfg.write(" address-family ipv6\n")
+
             if config[liste_AS[i]]["Routage_interAS"]["Num_routeur_bordeur"] != j+1 :
                 for k in range(nombre_routers_AS) :
                     if config[liste_AS[i]]["Matrice_adjacence"][j][k] == 1 and config[liste_AS[i]]["Routage_interAS"]["Num_routeur_bordeur"] != k+1 :  #on recupere le masque reseau
                         fichier_cfg.write("  network " + masque_reseau(config[liste_AS[i]]["Matrice_adressage"][j][k]) + "\n")
+
             else : #il s'agit du router border
                 liste_masque=[]
                 for k in range(nombre_routers_AS) :
@@ -105,9 +107,12 @@ for i in range(nombre_AS) :
                         if config[liste_AS[i]]["Matrice_adjacence"][k][l] == 1 and masque_reseau(config[liste_AS[i]]["Matrice_adressage"][k][l]) not in liste_masque :
                             fichier_cfg.write("  network " + masque_reseau(config[liste_AS[i]]["Matrice_adressage"][k][l]) + "\n")
                             liste_masque.append(masque_reseau(config[liste_AS[i]]["Matrice_adressage"][k][l]))
+
             for k in range(config[liste_AS[i]]["Nombre_routeur"] - 1) :
                 fichier_cfg.write("  neighbor 5000::" + str([e for e in liste_router if e != num_router][k]) + " activate\n")
+                
             fichier_cfg.writelines([" exit-address-family\n", "!\n"])
+
             if config[liste_AS[i]]["Routage_intraAS"]["Protocol"] == "OSPF" :
                 fichier_cfg.writelines([
                     "ipv6 router ospf " + liste_AS[i] + "\n",
