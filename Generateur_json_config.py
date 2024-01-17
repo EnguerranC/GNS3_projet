@@ -125,7 +125,6 @@ def Adressage_AS(Num_AS , Matrice_adjacence, Nombre_routeur) :
                   adresse_unique2 = config[Num_AS]["Masque_reseau"][:3]+":0:0:"+str(i+1)+"::"+"2/64"
                   config[Num_AS]["Matrice_adressage"][i][j] = adresse_unique1
                   config[Num_AS]["Matrice_adressage"][j][i] = adresse_unique2
-               if i == 
                
                      
 
