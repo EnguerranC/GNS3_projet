@@ -81,7 +81,7 @@ config = {
       "Routage_interAS":{
          Num_routeur_bordeur1 : {
             Num_AS2 : {
-               "Protocole" : "BGP"
+               "Protocole" : "BGP",
                "Adresse": ""
          }
          }
