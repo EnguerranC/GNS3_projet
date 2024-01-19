@@ -106,7 +106,7 @@ for i in range(nombre_AS) :
 
             for k in range(config[liste_AS[i]]["Nombre_routeur"] - 1) :
                 fichier_cfg.writelines([
-                    " neighbor 5000::" + str([e for e in liste_router if e != num_router][k]) + " remote-as " + liste_AS[i] + "\n",
+                    " neighbor 5000::" + str([e for e in liste_router if e != num_router][k]) + " remote-as " + "11" + liste_AS[i] + "\n",
                     " neighbor 5000::" + str([e for e in liste_router if e != num_router][k]) + " update-source Loopback0\n"
                 ])
 
