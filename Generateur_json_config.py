@@ -10,8 +10,6 @@ import json
 Num_AS1 = 1
 # Nombre de routeur
 N1 = 4
-#numeros des routers dans l'AS :
-L1 = [1,2,3]
 # Protocole interne
 Protocole_AS1 = "RIPng"
 # Graphe d'adjacence de taille N1xN1
@@ -22,6 +20,8 @@ M1 = [[0,1,0,0],
 
 # Masque reseau interface physique
 Masque1 = "111::0/40"
+# Masque loopback
+Masque_loopback1 = "111::0/64"
 # Routeur bordeur
 Num_routeur_bordeur1 = 3
 
@@ -31,20 +31,20 @@ Num_routeur_bordeur1 = 3
 Num_AS2 = 2
 # Nombre de routeur
 N2 = 3
-#numeros des routers dans l'AS :
-L2 = [4,5,6]
 # Protocole interne
 Protocole_AS2 = "OSPF"
 # Graphe d'adjacence de taille N2xN2
 M2 = [[0,1,0],[1,0,1],[0,1,0]]
 # Masque reseau interface physique
 Masque2 = "112::0/40"
+# Masque loopback
+Masque_loopback2 = "112::0/64"
 # Routeur bordeur
 Num_routeur_bordeur2 = 3
 
 """
 A rajouter plus tard :
-- Generateur du graphe d'adjacence à partir de tableau
+- Generateur du graphe d'adjacence à partir de quelque chose plus pratique
 """
 
 # Generateur de la matrice d'adressage vide
@@ -67,6 +67,7 @@ config = {
       "Nombre_routeur":N1,
       "Matrice_adjacence":M1,
       "Masque_reseau":Masque1,
+      "Maque_loopback":Masque_loopback1,
       "Matrice_adressage_interface": M_ad1,
       "Donnees_routeurs":{
       },
@@ -87,6 +88,7 @@ config = {
       "Nombre_routeur":N2,
       "Matrice_adjacence":M2,
       "Masque_reseau":Masque2,
+      "Maque_loopback":Masque_loopback2,
       "Matrice_adressage_interface":M_ad2,
       "Donnees_routeurs":{     
       },
@@ -140,5 +142,3 @@ Adressage_AS(Num_AS2,M2,N2) # Adressage de l'AS2
 
 fichier = open("config.json","w") # Creation du fichier json
 json.dump(config, fichier, indent=4)
-
-
