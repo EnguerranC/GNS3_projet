@@ -38,7 +38,7 @@ for i in range(nombre_AS) :
             fichier_cfg.writelines([
                     "interface Loopback0\n",
                     " no ip address\n",
-                    " ipv6 address 5000::" + str(num_router) + "/128\n"
+                    " ipv6 address " + config[liste_AS[i]]["Maque_loopback"].split("::")[0] + "::" + str(num_router) + "/128\n"
                             ])
             if config[liste_AS[i]]["Routage_intraAS"]["Protocol"] == "OSPF" : # // Rajouter le protocol RIP aussi dans les loopback même si en soit c'est pas vraiment utile
                 fichier_cfg.writelines([
