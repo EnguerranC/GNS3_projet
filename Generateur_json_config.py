@@ -78,9 +78,11 @@ config = {
       "Routage_interAS":{
          Num_routeur_bordeur1 : {
             Num_AS2 : {
-               "Protocole" : "BGP",
-               "Adresse": ""
-         }
+               "Num_routeur_bordeur_remote": Num_routeur_bordeur2,
+               "Protocole": "BGP",
+               "Adresse": "",
+               "Interface":""
+            }
          }
       }
    },
@@ -99,9 +101,11 @@ config = {
       "Routage_interAS":{
          Num_routeur_bordeur2 : {
             Num_AS1 : {
-               "Protocole" : "BGP",
-               "Adresse": ""
-         }
+               "Num_routeur_bordeur_remote": Num_routeur_bordeur1,
+               "Protocole": "BGP",
+               "Adresse": "",
+               "Interface":""
+            }
          }
       }
    }
@@ -116,23 +120,32 @@ for i in range(1,3) :
       Dynamips_ID = Dynamips_ID +1
 
 """ 
-Fonction Adressage_AS(Nom_As , Matrice_adjacence , Nombre_routeur) --> None
-Configure les adresses des liens d'une AS dans le fichier json
+Fonction Adressage_AS(Nom_As, Matrice_adjacence, Nombre_routeur) --> None
+Configure les adresses et les interfaces des liens d'une AS et inter AS dans le fichier json
 """
 def Adressage_AS(Num_AS , Matrice_adjacence, Nombre_routeur) :
-        nb_connexions = [0 for i in range(Nombre_routeur)]
-        for i in range(Nombre_routeur) :
-            for j in range(i,Nombre_routeur) :
-               if Matrice_adjacence[i][j] :
-                  nb_connexions[i]+=1
-                  nb_connexions[j]+=1
-                  interface1 = "GigabitEthernet" + str(nb_connexions[i]) + "/0"
-                  interface2 = "GigabitEthernet" + str(nb_connexions[j]) + "/0"
+   nb_connexions = [0 for i in range(Nombre_routeur)]
+   for routeur in range(Nombre_routeur) :
+      for lien in range(routeur,Nombre_routeur) :
+         if Matrice_adjacence[routeur][lien] :
+            nb_connexions[routeur]+=1
+            nb_connexions[lien]+=1
+            interface1 = "GigabitEthernet" + str(nb_connexions[routeur]) + "/0"
+            interface2 = "GigabitEthernet" + str(nb_connexions[lien]) + "/0"
 
-                  adresse_unique1 = config[Num_AS]["Masque_reseau"][:3]+":0:0:"+str(i+1)+"::"+"1/64"
-                  adresse_unique2 = config[Num_AS]["Masque_reseau"][:3]+":0:0:"+str(i+1)+"::"+"2/64"
-                  config[Num_AS]["Matrice_adressage_interface"][i][j] = [adresse_unique1,interface1]
-                  config[Num_AS]["Matrice_adressage_interface"][j][i] = [adresse_unique2, interface2]          
+            adresse_unique1 = config[Num_AS]["Masque_reseau"][:3]+":0:0:"+str(routeur+1)+"::"+"1/64"
+            adresse_unique2 = config[Num_AS]["Masque_reseau"][:3]+":0:0:"+str(routeur+1)+"::"+"2/64"
+            config[Num_AS]["Matrice_adressage_interface"][routeur][lien] = [adresse_unique1,interface1]
+            config[Num_AS]["Matrice_adressage_interface"][lien][routeur] = [adresse_unique2, interface2]
+      routeur+=1
+      if routeur in list(config[Num_AS]["Routage_interAS"].keys()) :
+         for remote_AS in list(config[Num_AS]["Routage_interAS"][routeur].keys()) :
+            nb_connexions[routeur-1]+=1
+            config[Num_AS]["Routage_interAS"][routeur][remote_AS]["Interface"] = "GigabitEthernet" + str(nb_connexions[routeur-1]) + "/0"
+            if Num_AS > remote_AS :
+               config[Num_AS]["Routage_interAS"][routeur][remote_AS]["Adresse"] = "2000:"+str(Num_AS)+str(remote_AS)+"::"+str(Num_AS)+"/32"
+            else :
+               config[Num_AS]["Routage_interAS"][routeur][remote_AS]["Adresse"] = "2000:"+str(remote_AS)+str(Num_AS)+"::"+str(Num_AS)+"/32"
 
 """
 Programme principal

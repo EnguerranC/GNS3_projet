@@ -132,8 +132,10 @@
         "Routage_interAS": {
             "3": {
                 "2": {
+                    "Num_routeur_bordeur_remote": 3,
                     "Protocole": "BGP",
-                    "Adresse": ""
+                    "Adresse": "2000:21::1/32",
+                    "Interface": "GigabitEthernet3/0"
                 }
             }
         }
@@ -227,8 +229,10 @@
         "Routage_interAS": {
             "3": {
                 "1": {
+                    "Num_routeur_bordeur_remote": 3,
                     "Protocole": "BGP",
-                    "Adresse": ""
+                    "Adresse": "2000:21::2/32",
+                    "Interface": "GigabitEthernet2/0"
                 }
             }
         }
