@@ -88,7 +88,7 @@ for i in range(nombre_AS) :
             ######### routage bgp ########
             
             fichier_cfg.writelines([
-                "router bgp " + liste_AS[i] + "\n",
+                "router bgp " + "11" + liste_AS[i] + "\n",
                 " bgp router-id " + 3*(str(num_router) + ".") + str(num_router) + "\n",
                 " bgp log-neighbor-changes\n",
                 " no bgp default ipv4-unicast\n",
