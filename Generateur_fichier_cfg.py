@@ -73,6 +73,18 @@ for i in range(nombre_AS) :
                     fichier_cfg.write("!\n")
                     num+=1
 
+            if str(j+1) in list(config[liste_AS[i]]["Routage_interAS"].keys()) : #si c'est un router de bordure
+                for k in list(config[liste_AS[i]]["Routage_interAS"][str(j+1)].keys()) :
+                    fichier_cfg.writelines([
+                            "interface " + config[liste_AS[i]]["Routage_interAS"][str(j+1)][str(k)]["Interface"] + "\n",
+                            " no ip address\n",
+                            " negotiation auto\n",
+                            " ipv6 address " + config[liste_AS[i]]["Routage_interAS"][str(j+1)][str(k)]["Adresse"] + "\n",
+                            " ipv6 enable\n",
+                            "!\n"
+                        ])
+
+
             ######### routage bgp ########
             
             fichier_cfg.writelines([
@@ -82,7 +94,15 @@ for i in range(nombre_AS) :
                 " no bgp default ipv4-unicast\n",
             ])
 
-            #si cest un router de bordure, il faut rajouter une route bgp ici
+            if str(j+1) in list(config[liste_AS[i]]["Routage_interAS"].keys()) : #si c'est un router de bordure
+                for k in list(config[liste_AS[i]]["Routage_interAS"][str(j+1)].keys()) :
+                    num = int(list(config[liste_AS[i]]["Routage_interAS"][str(j+1)][str(k)]["Adresse"].split("/")[0])[-1])
+                    if num == 1 :
+                        num = 2
+                    else :
+                        num=1
+
+                    fichier_cfg.write(" neighbor " + config[liste_AS[i]]["Routage_interAS"][str(j+1)][str(k)]["Adresse"].split("/")[0][:-1] + str(num) + " remote-as " + "11" + k + "\n")
 
             for k in range(config[liste_AS[i]]["Nombre_routeur"] - 1) :
                 fichier_cfg.writelines([
@@ -93,13 +113,8 @@ for i in range(nombre_AS) :
             fichier_cfg.write(" !\n")
 
             fichier_cfg.write(" address-family ipv6\n")
-
-            if int(list(config[liste_AS[i]]["Routage_interAS"].keys())[0]) != j+1 :
-                for k in range(nombre_routers_AS) :
-                    if config[liste_AS[i]]["Matrice_adjacence"][j][k] == 1 and int(list(config[liste_AS[i]]["Routage_interAS"].keys())[0]) != k+1 :  #on recupere le masque reseau
-                        fichier_cfg.write("  network " + masque_reseau(config[liste_AS[i]]["Matrice_adressage_interface"][j][k][0]) + "\n")
-
-            else : #il s'agit du router border
+            
+            if str(j+1) in list(config[liste_AS[i]]["Routage_interAS"].keys()) : #il s'agit du router border
                 liste_masque=[]
                 for k in range(nombre_routers_AS) :
                     for l in range(nombre_routers_AS) :
