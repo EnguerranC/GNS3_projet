@@ -27,7 +27,8 @@
                 0
             ]
         ],
-        "Masque_reseau": "111::0/40",
+        "Masque_reseau": "111::0/48",
+        "Maque_loopback": "5000::0/64",
         "Matrice_adressage_interface": [
             [
                 [
@@ -156,7 +157,8 @@
                 0
             ]
         ],
-        "Masque_reseau": "112::0/40",
+        "Masque_reseau": "112::0/48",
+        "Maque_loopback": "5000::0/64",
         "Matrice_adressage_interface": [
             [
                 [
