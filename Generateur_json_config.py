@@ -19,9 +19,9 @@ M1 = [[0,1,0,0],
       [0,0,1,0]]
 
 # Masque reseau interface physique
-Masque1 = "111::0/40"
+Masque1 = "111::0/48"
 # Masque loopback
-Masque_loopback1 = "111::0/64"
+Masque_loopback1 = "5000::0/64"
 # Routeur bordeur
 Num_routeur_bordeur1 = 3
 
@@ -36,9 +36,9 @@ Protocole_AS2 = "OSPF"
 # Graphe d'adjacence de taille N2xN2
 M2 = [[0,1,0],[1,0,1],[0,1,0]]
 # Masque reseau interface physique
-Masque2 = "112::0/40"
+Masque2 = "112::0/48"
 # Masque loopback
-Masque_loopback2 = "112::0/64"
+Masque_loopback2 = "5000::0/64"
 # Routeur bordeur
 Num_routeur_bordeur2 = 3
 
