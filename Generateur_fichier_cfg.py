@@ -122,6 +122,15 @@ for i in range(nombre_AS) :
                             fichier_cfg.write("  network " + masque_reseau(config[liste_AS[i]]["Matrice_adressage_interface"][k][l][0]) + "\n")
                             liste_masque.append(masque_reseau(config[liste_AS[i]]["Matrice_adressage_interface"][k][l][0]))
 
+            if str(j+1) in list(config[liste_AS[i]]["Routage_interAS"].keys()) : #si c'est un router de bordure
+                for k in list(config[liste_AS[i]]["Routage_interAS"][str(j+1)].keys()) :
+                    num = int(list(config[liste_AS[i]]["Routage_interAS"][str(j+1)][str(k)]["Adresse"].split("/")[0])[-1])
+                    if num == 1 :
+                        num = 2
+                    else :
+                        num=1
+                    fichier_cfg.write("  neighbor " + config[liste_AS[i]]["Routage_interAS"][str(j+1)][str(k)]["Adresse"].split("/")[0][:-1] + str(num) + " activate\n")
+
             for k in range(config[liste_AS[i]]["Nombre_routeur"] - 1) :
                 fichier_cfg.write("  neighbor 5000::" + str([e for e in liste_router if e != num_router][k]) + " activate\n")
 
