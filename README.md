@@ -16,7 +16,20 @@ Fonction :
 - Adressage_AS(Nom_As , Matrice_adjacence , Nombre_routeur) --> None : Configure les adresses des liens d'une AS dans le fichier json /FAIT
 
 # / Json
+Explication du json :
+- Première clé : le numéro de l'AS, simple incrémentation suivant le nombre d'AS
+- Deuxième clé : les clés suivantes sont les caractéristiques au sein de l'AS
+  - "Masque_reseau" : le masque utilisé pour les routers de l'AS
+  - "Matrice_adressage_interface" : la matrice d'adressage et d'interfaces où chaque élément vaut : soit ["",""] si il n'y a pas de lien entre les routers correspondants; soit une liste où le premier élément est l'adresse et le deuxième est l'interface utilisée. Chaque ligne correspond à la configuration du router dont le numéro correspond à l'indice de la ligne
+  - "Donnees_routeurs" : les clés correspondent au numero du router dans l'AS, simple incrémentation suivant le nombre de routers comme pour les AS; les clés suivantes donnent le dynamips ID et le Nom de chaque router
+  - "Routage_intraAS" : le protocole utilisé dans l'AS
+  - "Routage_interAS" : 
+    - Première clé : le numéro du router de bordure considéré
+    - Deuxième clé : le numéro de l'AS qui est relié à l'AS courante par le router de bordure
+  
+Suggestions :
 - Rajouter les loopbacks dans le json pour simplifier le code ?
+
 
 
 # Generateur_fichier_cfg pour chacun des routeurs :
