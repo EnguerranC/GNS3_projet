@@ -136,6 +136,12 @@
                     "Protocole": "BGP",
                     "Adresse": "2000:21::1/32",
                     "Interface": "GigabitEthernet3/0"
+                },
+                "3": {
+                    "Num_routeur_bordeur_remote": 2,
+                    "Protocole": "BGP",
+                    "Adresse": "2000:31::1/32",
+                    "Interface": "GigabitEthernet4/0"
                 }
             }
         }
@@ -233,6 +239,103 @@
                     "Protocole": "BGP",
                     "Adresse": "2000:21::2/32",
                     "Interface": "GigabitEthernet2/0"
+                }
+            }
+        }
+    },
+    "3": {
+        "Nombre_routeur": 3,
+        "Matrice_adjacence": [
+            [
+                0,
+                1,
+                0
+            ],
+            [
+                1,
+                0,
+                1
+            ],
+            [
+                0,
+                1,
+                0
+            ]
+        ],
+        "Masque_reseau": "113::0/48",
+        "Maque_loopback": "5000::0/64",
+        "Matrice_adressage_interface": [
+            [
+                [
+                    "",
+                    ""
+                ],
+                [
+                    "113:0:0:1::1/64",
+                    "GigabitEthernet1/0"
+                ],
+                [
+                    "",
+                    ""
+                ]
+            ],
+            [
+                [
+                    "113:0:0:1::2/64",
+                    "GigabitEthernet1/0"
+                ],
+                [
+                    "",
+                    ""
+                ],
+                [
+                    "113:0:0:2::1/64",
+                    "GigabitEthernet2/0"
+                ]
+            ],
+            [
+                [
+                    "",
+                    ""
+                ],
+                [
+                    "113:0:0:2::2/64",
+                    "GigabitEthernet1/0"
+                ],
+                [
+                    "",
+                    ""
+                ]
+            ]
+        ],
+        "Donnees_routeurs": {
+            "1": {
+                "Nom": "AS3_R1",
+                "Dynamips_ID": 8,
+                "Attributs": ""
+            },
+            "2": {
+                "Nom": "AS3_R2",
+                "Dynamips_ID": 9,
+                "Attributs": ""
+            },
+            "3": {
+                "Nom": "AS3_R3",
+                "Dynamips_ID": 10,
+                "Attributs": ""
+            }
+        },
+        "Routage_intraAS": {
+            "Protocol": "OSPF",
+            "Attribut": ""
+        },
+        "Routage_interAS": {
+            "2": {
+                "1": {
+                    "Num_routeur_bordeur_remote": 3,
+                    "Protocole": "BGP",
+                    "Adresse": "2000:31::3/32",
+                    "Interface": "GigabitEthernet3/0"
                 }
             }
         }

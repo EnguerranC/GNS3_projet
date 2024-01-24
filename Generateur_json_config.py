@@ -2,7 +2,15 @@ import json
 
 """ 
 --- Parametre de la config reseau ---
+
+      Pour rajouter un AS :
+      - rajouter le champs de l'AS juste en dessous
+      - rajouter une clé/valeur dans le dictionnaire config correspondant à la configuration de l'AS
+      - adapter les autres AS pour les connexions entre AS dans le dictionnaire config
+      - rajouter un appel a la fonction Adressage_AS pour l'AS voulu
+      - relancer les fichiers pythons 
 """
+
 
 """ AS 1 """
 
@@ -42,6 +50,23 @@ Masque_loopback2 = "5000::0/64"
 # Routeur bordeur
 Num_routeur_bordeur2 = 3
 
+""" AS 3 """
+
+# Num AS
+Num_AS3 = 3
+# Nombre de routeur
+N3 = 3
+# Protocole interne
+Protocole_AS3 = "OSPF"
+# Graphe d'adjacence de taille N2xN2
+M3 = [[0,1,0],[1,0,1],[0,1,0]]
+# Masque reseau interface physique
+Masque3 = "113::0/48"
+# Masque loopback
+Masque_loopback3 = "5000::0/64"
+# Routeur(s) bordeur(s)
+Num_routeur_bordeur3 = 2
+
 """
 A rajouter plus tard :
 - Generateur du graphe d'adjacence à partir de quelque chose plus pratique
@@ -54,9 +79,11 @@ def Matrice_addressage_vide(M_ad, N) :
       for j in range(N) :
          M_temp.append(["",""])
       M_ad.append(M_temp)
-M_ad1, M_ad2 = [], []
+
+M_ad1, M_ad2, M_ad3 = [], [], []
 Matrice_addressage_vide(M_ad1, N1)
 Matrice_addressage_vide(M_ad2, N2)
+Matrice_addressage_vide(M_ad3, N3)
 
 """
 Creation du dictionnaire vide
@@ -79,6 +106,12 @@ config = {
          Num_routeur_bordeur1 : {
             Num_AS2 : {
                "Num_routeur_bordeur_remote": Num_routeur_bordeur2,
+               "Protocole": "BGP",
+               "Adresse": "",
+               "Interface":""
+            },
+            Num_AS3 : {
+               "Num_routeur_bordeur_remote": Num_routeur_bordeur3,
                "Protocole": "BGP",
                "Adresse": "",
                "Interface":""
@@ -108,12 +141,35 @@ config = {
             }
          }
       }
+   },
+   Num_AS3:{
+      "Nombre_routeur":N3,
+      "Matrice_adjacence":M3,
+      "Masque_reseau":Masque3,
+      "Maque_loopback":Masque_loopback3,
+      "Matrice_adressage_interface":M_ad3,
+      "Donnees_routeurs":{     
+      },
+      "Routage_intraAS":{
+         "Protocol":Protocole_AS3,
+         "Attribut":""
+      },
+      "Routage_interAS":{
+         Num_routeur_bordeur3 : {
+            Num_AS1 : {
+               "Num_routeur_bordeur_remote": Num_routeur_bordeur1,
+               "Protocole": "BGP",
+               "Adresse": "",
+               "Interface":""
+            }
+         }
+      }
    }
 }
 
 # Generateur de la base de donnee des routeurs : Num_routeur, Nom, Dynamips_ID
 Dynamips_ID = 1
-for i in range(1,3) :
+for i in range(1,len(config)+1) :
    for j in range(1,globals()["N"+str(i)]+1) :
       Num_routeur = j
       config[i]["Donnees_routeurs"][Num_routeur] = {"Nom":"AS"+str(i)+"_R"+str(j) , "Dynamips_ID":Dynamips_ID  , "Attributs":""}
@@ -150,8 +206,10 @@ def Adressage_AS(Num_AS , Matrice_adjacence, Nombre_routeur) :
 """
 Programme principal
 """
+
 Adressage_AS(Num_AS1,M1,N1) # Adressage de l'AS1
 Adressage_AS(Num_AS2,M2,N2) # Adressage de l'AS2
+Adressage_AS(Num_AS3,M3,N3) # Adressage de l'AS3
 
 fichier = open("config.json","w") # Creation du fichier json
 json.dump(config, fichier, indent=4)
