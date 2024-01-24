@@ -80,9 +80,16 @@ for i in range(nombre_AS) :
                             " no ip address\n",
                             " negotiation auto\n",
                             " ipv6 address " + config[liste_AS[i]]["Routage_interAS"][str(j+1)][str(k)]["Adresse"] + "\n",
-                            " ipv6 enable\n",
-                            "!\n"
+                            " ipv6 enable\n"
                         ])
+                    if config[liste_AS[i]]["Routage_intraAS"]["Protocol"] == "OSPF" :
+                        fichier_cfg.writelines([
+                            " ipv6 ospf " + liste_AS[i] + " area " + liste_AS[i] + "\n",
+                            "!\n",
+                            "router ospf " + liste_AS[i] + "\n",
+                            " passive-interface " + config[liste_AS[i]]["Routage_interAS"][str(j+1)][str(k)]["Interface"] + "\n"
+                        ])
+                    fichier_cfg.write("!\n")
 
 
             ######### routage bgp ########
@@ -143,6 +150,16 @@ for i in range(nombre_AS) :
                     "!\n"
                 ])
             
+
+            ######### Redistribute connected ########
+            
+            if config[liste_AS[i]]["Routage_intraAS"]["Protocol"] == "RIPng" :
+                fichier_cfg.writelines([
+                    "ipv6 router rip RIPng\n"
+                    " redistribute connected\n"
+                    "!\n"
+                ])
+
             ######### end ########
                 
             fichier_cfg.writelines([
