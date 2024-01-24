@@ -83,3 +83,36 @@ Obj : A definir
 - Suppression d'un router border ?
 - Changer le nom d'un router ?
 - Choisir le nom d'un routeur ?
+
+# Config BGP
+
+# / Communauté fromprovider : à mettre dans tous les routeurs qui sont bordeur avec un provider
+
+# // Addresse-family ipv6
+neighbor [addresse du routeur provider] route-map fromprovider in
+# // Route Map
+route-map fromprovider permit [numero de prio
+  set community 1
+# // Ip community-list
+ip community-list standard provider permit 1
+
+# / Communauté fromclient : à mettre dans tous les routeurs qui sont bordeur avec un client
+
+# // Addresse-family ipv6
+neighbor [addresse du routeur client] route-map fromclient in
+# // Route Map
+route-map fromclient permit [numero de prio]
+  set community 2
+# // Ip community-list
+ip community-list standard client permit 2
+
+# / Communauté frompeer : à mettre dans tous les routeurs qui sont bordeur avec un peer
+
+# // Addresse-family ipv6
+neighbor [addresse du routeur peer] route-map frompeer in
+# // Route Map
+route-map frompeer permit [numero de prio]
+  set community 3
+# // Ip community-list
+ip community-list standard peer permit 3
+
