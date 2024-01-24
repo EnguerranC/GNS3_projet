@@ -3,12 +3,7 @@ import json
 """ 
 --- Parametre de la config reseau ---
 
-      Pour rajouter un AS :
-      - rajouter le champs de l'AS juste en dessous
-      - rajouter une clé/valeur dans le dictionnaire config correspondant à la configuration de l'AS
-      - adapter les autres AS pour les connexions entre AS dans le dictionnaire config
-      - rajouter un appel a la fonction Adressage_AS pour l'AS voulu
-      - relancer les fichiers pythons 
+      Pour rajouter un AS, rajouter juste l'AS et ses caractéristiques dans le dico config et modifier les autres AS pour les éventuels liens
 """
 
 
@@ -28,7 +23,7 @@ def Matrice_addressage_vide(M_ad, N) :
 
 
 """
-Creation du dictionnaire vide
+Creation du dictionnaire à moitié vide
 """
 
 config = {
