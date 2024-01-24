@@ -73,6 +73,8 @@ for i in range(nombre_AS) :
                     fichier_cfg.write("!\n")
                     num+=1
 
+                    ######### interfaces entre les borders
+
             if str(j+1) in list(config[liste_AS[i]]["Routage_interAS"].keys()) : #si c'est un router de bordure
                 for k in list(config[liste_AS[i]]["Routage_interAS"][str(j+1)].keys()) :
                     fichier_cfg.writelines([
@@ -156,8 +158,8 @@ for i in range(nombre_AS) :
             
             if config[liste_AS[i]]["Routage_intraAS"]["Protocol"] == "RIPng" :
                 fichier_cfg.writelines([
-                    "ipv6 router rip RIPng\n"
-                    " redistribute connected\n"
+                    "ipv6 router rip RIPng\n",
+                    " redistribute connected\n",
                     "!\n"
                 ])
 
