@@ -119,6 +119,8 @@ for i in range(nombre_AS) :
 
             fichier_cfg.write(" !\n")
 
+                    ######### adresse-family 
+
             fichier_cfg.write(" address-family ipv6\n")
             
             if str(j+1) in list(config[liste_AS[i]]["Routage_interAS"].keys()) : #il s'agit du router border
