@@ -104,7 +104,7 @@ config = {
             }
          },
          2 : {
-            6 : {
+            3 : {
                "Num_routeur_bordeur_remote" : 1,
                "Protocole" : "BGP",
                "Adresse" : "",
@@ -112,7 +112,7 @@ config = {
             }
          },
          1 : {
-            3 : {
+            6 : {
                "Num_routeur_bordeur_remote" : 1,
                "Protocole" : "BGP",
                "Adresse" : "",
