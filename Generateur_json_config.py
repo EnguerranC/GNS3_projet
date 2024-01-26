@@ -30,6 +30,7 @@ config = {
    1 : {
       "Nombre_routeur" : 4,
       "Type_AS" : "AS",
+      "Local_pref": None,
       "Matrice_adjacence" : [[0,1,0,0],
                              [1,0,1,0],
                              [0,1,0,1],
@@ -40,16 +41,14 @@ config = {
       "Donnees_routeurs" : {
       },
       "Routage_intraAS" : {
-         "Protocol" : "RIPng",
-         "Attribut" : ""
+         "Protocol" : "RIPng"
       },
       "Routage_interAS":{
          3 : {
             2 : {
                "Num_routeur_bordeur_remote" : 3,
                "Protocole" : "BGP",
-               "Adresse" : "",
-               "Interface" : ""
+               "Adresse" : ""
             }
          },
          2 : {
@@ -76,11 +75,12 @@ config = {
                "Interface" : ""
             }
          }
-      }
+      },
    },
    2 : {
       "Nombre_routeur" : 4,
       "Type_AS" : "AS",
+      "Local_pref": None,
       "Matrice_adjacence" : [[0,1,0,0],
                              [1,0,1,0],
                              [0,1,0,1],
@@ -91,8 +91,7 @@ config = {
       "Donnees_routeurs" : {
       },
       "Routage_intraAS" : {
-         "Protocol" : "OSPF",
-         "Attribut" : ""
+         "Protocol" : "OSPF"
       },
       "Routage_interAS":{
          3 : {
@@ -124,6 +123,7 @@ config = {
    3 : {
       "Nombre_routeur" : 1,
       "Type_AS" : "Provider",
+      "Local_pref": None,
       "Matrice_adjacence" : [[0]],
       "Masque_reseau" : "113::0/48",
       "Maque_loopback" : "5000::0/64",
@@ -131,8 +131,7 @@ config = {
       "Donnees_routeurs" : {
       },
       "Routage_intraAS" : {
-         "Protocol" : "",
-         "Attribut" : ""
+         "Protocol" : ""
       },
       "Routage_interAS":{
          1 : {
@@ -154,6 +153,7 @@ config = {
    4 : {
       "Nombre_routeur" : 1,
       "Type_AS" : "Peer",
+      "Local_pref": None,
       "Matrice_adjacence" : [[0]],
       "Masque_reseau" : "114::0/48",
       "Maque_loopback" : "5000::0/64",
@@ -161,16 +161,14 @@ config = {
       "Donnees_routeurs" : {
       },
       "Routage_intraAS" : {
-         "Protocol" : "",
-         "Attribut" : ""
+         "Protocol" : ""
       },
       "Routage_interAS":{
          1 : {
             1 : {
                "Num_routeur_bordeur_remote" : 1,
                "Protocole" : "BGP",
-               "Adresse" : "",
-               "Interface" : ""
+               "Adresse" : ""
             }
          }
       }
@@ -178,6 +176,7 @@ config = {
    5 : {
       "Nombre_routeur" : 1,
       "Type_AS" : "Client",
+      "Local_pref": None,
       "Matrice_adjacence" : [[0]],
       "Masque_reseau" : "115::0/48",
       "Maque_loopback" : "5000::0/64",
@@ -185,8 +184,7 @@ config = {
       "Donnees_routeurs" : {
       },
       "Routage_intraAS" : {
-         "Protocol" : "",
-         "Attribut" : ""
+         "Protocol" : ""
       },
       "Routage_interAS":{
          1 : {
@@ -202,6 +200,7 @@ config = {
    6 : {
       "Nombre_routeur" : 1,
       "Type_AS" : "Client",
+      "Local_pref": None,
       "Matrice_adjacence" : [[0]],
       "Masque_reseau" : "116::0/48",
       "Maque_loopback" : "5000::0/64",
@@ -209,8 +208,7 @@ config = {
       "Donnees_routeurs" : {
       },
       "Routage_intraAS" : {
-         "Protocol" : "",
-         "Attribut" : ""
+         "Protocol" : ""
       },
       "Routage_interAS":{
          1 : {
