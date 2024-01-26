@@ -1,0 +1,30 @@
+Jan 26 14:09:25.887 HYPERVISOR: Release 0.2.23-amd64/Linux (tag 2023010200)
+Jan 26 14:09:25.887 HYPERVISOR: Started on IP = 127.0.0.1, TCP port = 33139.
+Jan 26 14:09:25.896 HYPERVISOR: exec_cmd: hypervisor version 
+Jan 26 14:09:25.896 HYPERVISOR: exec_cmd: hypervisor working_dir /home/enguerran/GNS3/projects/Simulation_entreprise/project-files/dynamips 
+Jan 26 14:09:25.896 GENERAL: working_dir=/home/enguerran/GNS3/projects/Simulation_entreprise/project-files/dynamips
+Jan 26 14:09:25.896 HYPERVISOR: exec_cmd: hypervisor working_dir /home/enguerran/GNS3/projects/Simulation_entreprise/project-files/dynamips/e1cc58ee-9e9b-4d1e-8401-878f124d581d 
+Jan 26 14:09:25.896 GENERAL: working_dir=/home/enguerran/GNS3/projects/Simulation_entreprise/project-files/dynamips/e1cc58ee-9e9b-4d1e-8401-878f124d581d
+Jan 26 14:09:25.896 HYPERVISOR: exec_cmd: vm create R12 12 c7200 
+Jan 26 14:09:25.896 VM: VM R12 created.
+Jan 26 14:09:25.897 HYPERVISOR: exec_cmd: vm set_con_tcp_port R12 5021 
+Jan 26 14:09:25.897 HYPERVISOR: exec_cmd: c7200 get_mac_addr R12 
+Jan 26 14:09:25.897 HYPERVISOR: exec_cmd: vm get_status R12 
+Jan 26 14:09:25.897 HYPERVISOR: exec_cmd: vm slot_add_binding R12 0 0 C7200-IO-FE 
+Jan 26 14:09:25.897 HYPERVISOR: exec_cmd: vm set_disk0 R12 0 
+Jan 26 14:09:25.897 HYPERVISOR: exec_cmd: vm set_ios R12 /home/enguerran/GNS3/images/IOS/c7200-advipservicesk9-mz.152-4.S5.image 
+Jan 26 14:09:25.897 HYPERVISOR: exec_cmd: c7200 set_mac_addr R12 ca0c.96bd.0000 
+Jan 26 14:09:25.897 HYPERVISOR: exec_cmd: vm set_nvram R12 512 
+Jan 26 14:09:25.898 HYPERVISOR: exec_cmd: vm set_ram R12 512 
+Jan 26 14:09:25.898 HYPERVISOR: exec_cmd: vm get_status R12 
+Jan 26 14:09:25.898 HYPERVISOR: exec_cmd: vm slot_add_binding R12 1 0 PA-GE 
+Jan 26 14:09:25.898 HYPERVISOR: exec_cmd: vm get_status R12 
+Jan 26 14:09:25.898 HYPERVISOR: exec_cmd: vm slot_add_binding R12 2 0 PA-GE 
+Jan 26 14:09:25.898 HYPERVISOR: exec_cmd: vm get_status R12 
+Jan 26 14:09:25.898 HYPERVISOR: exec_cmd: vm slot_add_binding R12 3 0 PA-GE 
+Jan 26 14:09:25.898 HYPERVISOR: exec_cmd: vm get_status R12 
+Jan 26 14:09:25.898 HYPERVISOR: exec_cmd: vm slot_add_binding R12 4 0 PA-GE 
+Jan 26 14:09:25.898 HYPERVISOR: exec_cmd: vm set_con_tcp_port R12 5021 
+Jan 26 14:09:28.846 HYPERVISOR: exec_cmd: nio create_udp udp-26013d0a-5d0c-4d39-8885-484cea79057e 10124 127.0.0.1 10125 
+Jan 26 14:09:29.057 HYPERVISOR: exec_cmd: vm slot_add_nio_binding R12 1 0 udp-26013d0a-5d0c-4d39-8885-484cea79057e 
+Jan 26 14:09:29.058 HYPERVISOR: exec_cmd: vm get_status R12 
