@@ -165,7 +165,7 @@ for i in range(nombre_AS) :
             if str(j+1) in list(config[liste_AS[i]]["Routage_interAS"].keys()) :
                 for k in list(config[liste_AS[i]]["Routage_interAS"][str(j+1)].keys()) :
                     fichier_cfg.writelines([
-                        "route-map from" + config[k]["Type_AS"] + " permit " + config[k]["Numero_prio"] + "\n",
+                        "route-map from" + config[k]["Type_AS"] + " permit " + str(20) + "\n",
                         " set community " + k + "\n",
                         "!\n"])
             
