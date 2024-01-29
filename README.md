@@ -84,7 +84,7 @@ Obj : A definir
 - Changer le nom d'un router ?
 - Choisir le nom d'un routeur ?
 
-# Config BGP
+# Communauté BGP
 
 # / Communauté fromprovider : à mettre dans tous les routeurs qui sont bordeur avec un provider
 
@@ -115,4 +115,37 @@ route-map frompeer permit [numero de prio]
   set community 3
 # // Ip community-list
 ip community-list standard peer permit 3
+
+# / Communauté as1/2 : à mettre dans tous les routeurs qui sont bordeur avec as1/2
+
+# // Addresse-family ipv6
+neighbor [addresse du routeur as1/2] route-map fromas1/2 in
+# // Route Map
+route-map fromas1/2 permit [numero de prio]
+  set community 4/5
+# // Ip community-list
+ip community-list standard fromas1/2 permit 4
+
+# Management des routes
+
+# / Provider
+On veut accepter toutes les routes advertise de leur part
+On ne veut leur transmettre QUE les routes qui proviennent d'un CLIENT
+
+# / Client
+On veut accepter toutes les routes advertise de leur part
+On veut leur transmettre toutes les routes de notre part
+
+# / Peer
+On veut accepter toutes les routes advertise de leur part
+On ne veut leur transmettre QUE les routes qui provienent d'un CLIENT
+
+# Management de la priorité des routes
+
+On veut passer en priorité par les clients, puis par les peer, et enfin si il n'y a aucune autre route possible on passe par les providers
+Pour cela on utilise le local pref :
+  On met le local pref des clients à 150
+  On met le local pref des peer à 100
+  On met le local pref des providers à 50
+  
 
