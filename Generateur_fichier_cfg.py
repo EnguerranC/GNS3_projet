@@ -105,13 +105,10 @@ for i in range(nombre_AS) :
 
             if str(j+1) in list(config[liste_AS[i]]["Routage_interAS"].keys()) : #si c'est un router de bordure
                 for k in list(config[liste_AS[i]]["Routage_interAS"][str(j+1)].keys()) :
-                    num = int(list(config[liste_AS[i]]["Routage_interAS"][str(j+1)][str(k)]["Adresse"].split("/")[0])[-1])
-                    if num == 1 :
-                        num = 2
-                    else :
-                        num=1
-
-                    fichier_cfg.write(" neighbor " + config[liste_AS[i]]["Routage_interAS"][str(j+1)][str(k)]["Adresse"].split("/")[0][:-1] + k + " remote-as " + "11" + k + "\n")
+                    fichier_cfg.writelines([
+                        " neighbor " + config[liste_AS[i]]["Routage_interAS"][str(j+1)][str(k)]["Adresse"].split("/")[0][:-1] + k + " remote-as " + "11" + k + "\n",
+                        " neighbor " + config[liste_AS[i]]["Routage_interAS"][str(j+1)][str(k)]["Adresse"].split("/")[0][:-1] + k + " send-community\n"
+                    ])
 
             for k in range(config[liste_AS[i]]["Nombre_routeur"] - 1) :
                 fichier_cfg.writelines([
@@ -134,12 +131,11 @@ for i in range(nombre_AS) :
                             liste_masque.append(masque_reseau(config[liste_AS[i]]["Matrice_adressage_interface"][k][l][0]))
 
                 for k in list(config[liste_AS[i]]["Routage_interAS"][str(j+1)].keys()) :
-                    num = int(list(config[liste_AS[i]]["Routage_interAS"][str(j+1)][str(k)]["Adresse"].split("/")[0])[-1])
-                    if num == 1 :
-                        num = 2
-                    else :
-                        num=1
-                    fichier_cfg.write("  neighbor " + config[liste_AS[i]]["Routage_interAS"][str(j+1)][str(k)]["Adresse"].split("/")[0][:-1] + k + " activate\n")
+                    fichier_cfg.writelines([
+                        "  neighbor " + config[liste_AS[i]]["Routage_interAS"][str(j+1)][str(k)]["Adresse"].split("/")[0][:-1] + k + " activate\n",
+                        "  neighbor " + config[liste_AS[i]]["Routage_interAS"][str(j+1)][str(k)]["Adresse"].split("/")[0][:-1] + k + " route-map from" + config[liste_AS[i]]["Type_AS"] + " in\n",
+                        "  neighbor " + config[liste_AS[i]]["Routage_interAS"][str(j+1)][str(k)]["Adresse"].split("/")[0][:-1] + k + " route-map to" + config[liste_AS[i]]["Type_AS"] + " out\n"
+                    ])
 
             for k in range(config[liste_AS[i]]["Nombre_routeur"] - 1) :
                 fichier_cfg.write("  neighbor 5000::" + str([e for e in liste_router if e != num_router][k]) + " activate\n")
@@ -152,8 +148,27 @@ for i in range(nombre_AS) :
                     " router-id " + 3*(str(num_router) + ".") + str(num_router) + "\n",
                     "!\n"
                 ])
-            
 
+            ######### communautées ########
+            
+            if config[liste_AS[i]]["Type_AS"] == "AS" :
+                type_printed = []
+                for k in range(nombre_AS) :
+                    type = config[liste_AS[k]]["Type_AS"]
+                    if type not in type_printed :
+                        fichier_cfg.write("ip community-list standard " + type + " permit " + liste_AS[k] + "\n" )
+                fichier_cfg.write("!\n")
+
+
+            ######### route-map ########
+            
+            if str(j+1) in list(config[liste_AS[i]]["Routage_interAS"].keys()) :
+                for k in list(config[liste_AS[i]]["Routage_interAS"][str(j+1)].keys()) :
+                    fichier_cfg.writelines([
+                        "route-map from" + config[k]["Type_AS"] + " permit " + config[k]["Numero_prio"] + "\n",
+                        " set community " + k + "\n",
+                        "!\n"])
+            
             ######### Redistribute connected ########
             
             if config[liste_AS[i]]["Routage_intraAS"]["Protocol"] == "RIPng" :

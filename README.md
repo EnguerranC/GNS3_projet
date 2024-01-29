@@ -102,7 +102,7 @@ ip community-list standard provider permit 1
 neighbor [addresse du routeur client] route-map fromclient in
 # // Route Map
 route-map fromclient permit [numero de prio]
-  set community 2
+ set community 2
 # // Ip community-list
 ip community-list standard client permit 2
 
