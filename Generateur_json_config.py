@@ -252,7 +252,7 @@ config = {
 
 # Generateur de la base de donnee des routeurs : Num_routeur, Nom, Dynamips_ID
 Dynamips_ID = 1
-for i in range(1,len(config)+1) :
+for i in range(1,len(config)) :
    for j in range(1, config[i]["Nombre_routeur"]+1) :
       Num_routeur = j
       config[i]["Donnees_routeurs"][Num_routeur] = {"Nom":"AS"+str(i)+"_R"+str(j) , "Dynamips_ID":Dynamips_ID  , "Attributs":""}
@@ -289,7 +289,7 @@ def Adressage_AS(Num_AS , Matrice_adjacence, Nombre_routeur) :
 """
 Programme principal
 """
-for i in range(len(config)) : 
+for i in range(len(config)-1) :
    Adressage_AS(i+1, config[i+1]["Matrice_adjacence"], config[i+1]["Nombre_routeur"])
 
 fichier = open("config.json","w") # Creation du fichier json
