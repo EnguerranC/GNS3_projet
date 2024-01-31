@@ -169,9 +169,9 @@ for i in range(nombre_AS) :
                 for k in list(config[liste_AS[i]]["Routage_interAS"][str(j+1)].keys()) :
                     if config[k]["Type_AS"] != "AS" :
                         fichier_cfg.writelines([
-                            "route-map from" + config[k]["Type_AS"] + " permit " + str(20) + "\n",
-                            " set community " + k + "\n",
-                            "set local-preference " + 
+                            "route-map From" + config[k]["Type_AS"] + " permit " + str(20) + "\n",
+                            " set community " + str(tags[config[k]["Type_AS"]]) + "\n",
+                            "set local-preference " + str(config["Route_map"]["From" + config[k]["Type_AS"]]["Local_pref"]) + "\n"
                             "!\n"])
                         # route map to Type_AS permit
                             # Match_community 
