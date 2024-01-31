@@ -119,7 +119,7 @@ for i in range(nombre_AS) :
 
             fichier_cfg.write(" !\n")
 
-                    ######### adresse-family 
+                    ######### adresse-family ########
 
             fichier_cfg.write(" address-family ipv6\n")
             
@@ -173,6 +173,8 @@ for i in range(nombre_AS) :
                             " set community " + k + "\n",
                             "set local-preference " + 
                             "!\n"])
+                        # route map to Type_AS permit
+                            # Match_community 
             
             ######### Redistribute connected ########
             
