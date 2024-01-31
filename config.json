@@ -127,8 +127,7 @@
             }
         },
         "Routage_intraAS": {
-            "Protocol": "RIPng",
-            "Attribut": ""
+            "Protocol": "RIPng"
         },
         "Routage_interAS": {
             "3": {
@@ -293,8 +292,7 @@
             }
         },
         "Routage_intraAS": {
-            "Protocol": "OSPF",
-            "Attribut": ""
+            "Protocol": "OSPF"
         },
         "Routage_interAS": {
             "3": {
@@ -349,8 +347,7 @@
             }
         },
         "Routage_intraAS": {
-            "Protocol": "",
-            "Attribut": ""
+            "Protocol": ""
         },
         "Routage_interAS": {
             "1": {
@@ -395,8 +392,7 @@
             }
         },
         "Routage_intraAS": {
-            "Protocol": "",
-            "Attribut": ""
+            "Protocol": ""
         },
         "Routage_interAS": {
             "1": {
@@ -435,8 +431,7 @@
             }
         },
         "Routage_intraAS": {
-            "Protocol": "",
-            "Attribut": ""
+            "Protocol": ""
         },
         "Routage_interAS": {
             "1": {
@@ -475,8 +470,7 @@
             }
         },
         "Routage_intraAS": {
-            "Protocol": "",
-            "Attribut": ""
+            "Protocol": ""
         },
         "Routage_interAS": {
             "1": {
@@ -487,6 +481,44 @@
                     "Interface": "GigabitEthernet1/0"
                 }
             }
+        }
+    },
+    "Route_map": {
+        "FromProvider": {
+            "Prio": 20,
+            "Set_community": "FromProvider",
+            "Local_pref": 50,
+            "Match_community": null
+        },
+        "ToProvider": {
+            "Prio": 20,
+            "Set_community": null,
+            "Local_pref": null,
+            "Match_community": "Client"
+        },
+        "FromPeer": {
+            "Prio": 20,
+            "Set_community": "FromPeer",
+            "Local_pref": 100,
+            "Match_community": null
+        },
+        "ToPeer": {
+            "Prio": 20,
+            "Set_community": null,
+            "Local_pref": null,
+            "Match_community": "Client"
+        },
+        "FromClient": {
+            "Prio": 20,
+            "Set_community": "FromClient",
+            "Local_pref": 150,
+            "Match_community": null
+        },
+        "ToClient": {
+            "Prio": 20,
+            "Set_community": null,
+            "Local_pref": null,
+            "Match_community": "Everybody"
         }
     }
 }
