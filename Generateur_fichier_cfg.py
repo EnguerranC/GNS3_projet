@@ -4,7 +4,7 @@ with open("config.json", 'r') as fichier:
     # Charger le contenu JSON dans une variable Python (ici, un dictionnaire)
     config = json.load(fichier)
 
-def masque_reseau(adresse) :
+def masque_reseau(adresse) : #fonction qui retourne la partie réseau d'une adresse ipv6
     masque = int(adresse.split('/')[1])
     masque_res = ""
     liste_adresse = adresse.split(':')
@@ -14,18 +14,18 @@ def masque_reseau(adresse) :
 
 nombre_routers = 0
 liste_AS = list(config.keys())
-liste_AS = [e for e in liste_AS if e != "Route_map"]
+liste_AS = [e for e in liste_AS if e != "Route_map"] #la liste des numeros des AS
 nombre_AS = len(liste_AS)
 
 for i in range(nombre_AS):
     nombre_routers += int(config[liste_AS[i]]["Nombre_routeur"])
 
 
-for i in range(nombre_AS) :
-    nombre_routers_AS = config[liste_AS[i]]["Nombre_routeur"]
-    liste_router = [config[liste_AS[i]]["Donnees_routeurs"][f"{j+1}"]["Dynamips_ID"] for j in range(nombre_routers_AS)]
+for i in range(nombre_AS) : #on parcours chaque AS
+    nombre_routers_AS = config[liste_AS[i]]["Nombre_routeur"] #le nombre de routers dans l'AS
+    liste_router = [config[liste_AS[i]]["Donnees_routeurs"][f"{j+1}"]["Dynamips_ID"] for j in range(nombre_routers_AS)] #liste des routers dans l'AS
 
-    for j in range(config[liste_AS[i]]["Nombre_routeur"]) :
+    for j in range(config[liste_AS[i]]["Nombre_routeur"]) : #on setup chaque router dans l'AS
         num_router = config[liste_AS[i]]["Donnees_routeurs"][f"{j+1}"]["Dynamips_ID"]
 
         with open('fichiers_cfg/R' + str(config[liste_AS[i]]["Donnees_routeurs"][f"{j+1}"]["Dynamips_ID"]) + "_configs_i" + str(num_router) + "_startup-config.cfg",'w') as fichier_cfg :
@@ -52,7 +52,6 @@ for i in range(nombre_AS) :
 
             ######### interfaces ########
 
-            num=1
             for k in range(config[liste_AS[i]]["Nombre_routeur"]) : 
                 if config[liste_AS[i]]["Matrice_adjacence"][j][k] == 1 : # S'il y a un lien on crée une interface
                     fichier_cfg.writelines([
@@ -72,7 +71,6 @@ for i in range(nombre_AS) :
                             " ipv6 ospf " + liste_AS[i] + " area " + liste_AS[i] + "\n"
                         ])
                     fichier_cfg.write("!\n")
-                    num+=1
 
                     ######### interfaces entre les borders
 
@@ -85,7 +83,7 @@ for i in range(nombre_AS) :
                             " ipv6 address " + config[liste_AS[i]]["Routage_interAS"][str(j+1)][str(k)]["Adresse"] + "\n",
                             " ipv6 enable\n"
                         ])
-                    if config[liste_AS[i]]["Routage_intraAS"]["Protocol"] == "OSPF" :
+                    if config[liste_AS[i]]["Routage_intraAS"]["Protocol"] == "OSPF" : #si l'AS courant est en ospf, il faut mettre le router en passive-interface
                         fichier_cfg.writelines([
                             " ipv6 ospf " + liste_AS[i] + " area " + liste_AS[i] + "\n",
                             "!\n",
@@ -104,7 +102,7 @@ for i in range(nombre_AS) :
                 " no bgp default ipv4-unicast\n",
             ])
 
-            if str(j+1) in list(config[liste_AS[i]]["Routage_interAS"].keys()) : #si c'est un router de bordure
+            if str(j+1) in list(config[liste_AS[i]]["Routage_interAS"].keys()) : #si c'est un router de bordure, on ajoute les neighbors des autres AS
                 for k in list(config[liste_AS[i]]["Routage_interAS"][str(j+1)].keys()) :
                     fichier_cfg.writelines([
                         " neighbor " + config[liste_AS[i]]["Routage_interAS"][str(j+1)][str(k)]["Adresse"].split("/")[0][:-1] + k + " remote-as " + "11" + k + "\n",
@@ -123,7 +121,7 @@ for i in range(nombre_AS) :
 
             fichier_cfg.write(" address-family ipv6\n")
             
-            if str(j+1) in list(config[liste_AS[i]]["Routage_interAS"].keys()) : #il s'agit du router border
+            if str(j+1) in list(config[liste_AS[i]]["Routage_interAS"].keys()) : #il s'agit du router border, on configure le routage inter AS
                 liste_masque=[]
                 for k in range(nombre_routers_AS) :
                     for l in range(nombre_routers_AS) :
@@ -165,16 +163,21 @@ for i in range(nombre_AS) :
 
             ######### route-map ########
             
-            if str(j+1) in list(config[liste_AS[i]]["Routage_interAS"].keys()) : #il s'agit du router border
-                for k in list(config[liste_AS[i]]["Routage_interAS"][str(j+1)].keys()) :
-                    if config[k]["Type_AS"] != "AS" :
-                        fichier_cfg.writelines([
-                            "route-map From" + config[k]["Type_AS"] + " permit " + str(20) + "\n",
-                            " set community " + str(tags[config[k]["Type_AS"]]) + "\n",
-                            "set local-preference " + str(config["Route_map"]["From" + config[k]["Type_AS"]]["Local_pref"]) + "\n"
-                            "!\n"])
-                        # route map to Type_AS permit
-                            # Match_community 
+            if config[liste_AS[i]]["Type_AS"] == "AS" : #si on est dans un AS
+                if str(j+1) in list(config[liste_AS[i]]["Routage_interAS"].keys()) : #il s'agit du router border
+                    for k in list(config[liste_AS[i]]["Routage_interAS"][str(j+1)].keys()) :
+                        if config[k]["Type_AS"] != "AS" : #si'il ne s'agit pas d'un AS, on fait des route-map
+                            #from
+                            fichier_cfg.writelines([
+                                "route-map From" + config[k]["Type_AS"] + " permit " + str(config["Route_map"]["From" + config[k]["Type_AS"]]["Prio"]) + "\n",
+                                " set community " + str(tags[config[k]["Type_AS"]]) + "\n",
+                                " set local-preference " + str(config["Route_map"]["From" + config[k]["Type_AS"]]["Local_pref"]) + "\n"
+                                "!\n"])
+                            #to
+                            fichier_cfg.write("route-map To" + config[k]["Type_AS"] + " permit " + str(config["Route_map"]["From" + config[k]["Type_AS"]]["Local_pref"]) + "\n")
+                            if config[k]["Type_AS"] != "Client" : # si le remote AS n'est pas un client, on fait du match client
+                                fichier_cfg.write(" match community Client\n")
+                            fichier_cfg.write("!\n")
             
             ######### Redistribute connected ########
             
