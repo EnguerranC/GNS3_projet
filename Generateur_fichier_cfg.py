@@ -14,6 +14,7 @@ def masque_reseau(adresse) :
 
 nombre_routers = 0
 liste_AS = list(config.keys())
+liste_AS = [e for e in liste_AS if e != "Route_map"]
 nombre_AS = len(liste_AS)
 
 for i in range(nombre_AS):
@@ -151,27 +152,30 @@ for i in range(nombre_AS) :
 
             ######### communautées ########
             
-            if config[liste_AS[i]]["Type_AS"] == "AS" :
+            if config[liste_AS[i]]["Type_AS"] == "AS" :  #on ajoute les communautées pour tous les routers d'un AS avec un id que l'on peut voir dans le dico tags
                 type_printed = []
+                tags = {"Client" : 3, "Provider" : 2, "Peer" : 1}
                 for k in range(nombre_AS) :
-                    type = config[liste_AS[k]]["Type_AS"]
-                    if type not in type_printed :
-                        fichier_cfg.write("ip community-list standard " + type + " permit " + liste_AS[k] + "\n" )
+                    typ = config[liste_AS[k]]["Type_AS"]
+                    if typ not in type_printed and typ != "AS" :
+                        fichier_cfg.write("ip community-list standard " + typ + " permit " + str(tags[typ]) + "\n" )
+                        type_printed.append(typ)
                 fichier_cfg.write("!\n")
 
 
             ######### route-map ########
             
-            if str(j+1) in list(config[liste_AS[i]]["Routage_interAS"].keys()) :
+            if str(j+1) in list(config[liste_AS[i]]["Routage_interAS"].keys()) : #il s'agit du router border
                 for k in list(config[liste_AS[i]]["Routage_interAS"][str(j+1)].keys()) :
-                    fichier_cfg.writelines([
-                        "route-map from" + config[k]["Type_AS"] + " permit " + str(20) + "\n",
-                        " set community " + k + "\n",
-                        "!\n"])
+                    if config[k]["Type_AS"] != "AS" :
+                        fichier_cfg.writelines([
+                            "route-map from" + config[k]["Type_AS"] + " permit " + str(20) + "\n",
+                            " set community " + k + "\n",
+                            "!\n"])
             
             ######### Redistribute connected ########
             
-            if config[liste_AS[i]]["Routage_intraAS"]["Protocol"] == "RIPng" :
+            if config[liste_AS[i]]["Routage_intraAS"]["Protocol"] == "RIPng" : #si le protocole du router est RIP, on active le redistribute connected
                 fichier_cfg.writelines([
                     "ipv6 router rip RIPng\n",
                     " redistribute connected\n",
@@ -181,6 +185,5 @@ for i in range(nombre_AS) :
             ######### end ########
                 
             fichier_cfg.writelines([
-                "!\n",
                 "end"
             ])
