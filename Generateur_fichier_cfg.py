@@ -171,6 +171,7 @@ for i in range(nombre_AS) :
                         fichier_cfg.writelines([
                             "route-map from" + config[k]["Type_AS"] + " permit " + str(20) + "\n",
                             " set community " + k + "\n",
+                            "set local-preference " + 
                             "!\n"])
             
             ######### Redistribute connected ########
