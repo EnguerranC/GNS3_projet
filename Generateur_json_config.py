@@ -1,12 +1,16 @@
 import json
 
 """ 
---- Parametre de la config reseau ---
+                                                ----------------------------------
+                                                --- Generateur du fichier json ---
+                                                ----------------------------------
 
-      Pour rajouter un AS, rajouter juste l'AS et ses caractéristiques dans le dico config et modifier les autres AS pour les éventuels liens
+L'essentiel des informations doivent être changées ou rajoutées à la main dans le dico config. Se réferer au Readme pour comprendre sa structure.
+Pour rajouter un AS, rajouter juste l'AS et ses caractéristiques dans le dico config et modifier les autres AS pour les éventuels liens.
+
 """
 
-# Generateur de la matrice d'adressage vide
+# Generateur d'une matrice d'adressage vide
 def Matrice_addressage_vide(M_ad, N) :
    for i in range(N) :
       M_temp = []
@@ -15,11 +19,7 @@ def Matrice_addressage_vide(M_ad, N) :
       M_ad.append(M_temp)
    return M_ad
 
-
-"""
-Creation du dictionnaire à moitié vide
-"""
-
+# Dictionnaire config à la base de la structure du fichier json
 config = {
    1 : {
       "Nombre_routeur" : 4,
@@ -211,31 +211,37 @@ config = {
    },
    "Route_map" : {
          "FromProvider" : {
+            "Prio" : 20,
             "Set_community" : "FromProvider",
             "Local_pref" : 50,
             "Match_community" : None
          },
          "ToProvider" : {
+            "Prio" : 20,
             "Set_community" : None,
             "Local_pref" : None,
             "Match_community" : "Client"
          },
          "FromPeer" : {
+            "Prio" : 20,
             "Set_community" : "FromPeer",
             "Local_pref" : 100,
             "Match_community" : None
          },
          "ToPeer" : {
+            "Prio" : 20,
             "Set_community" : None,
             "Local_pref" : None,
             "Match_community" : "Client"
          },
          "FromClient" :{
+            "Prio" : 20,
             "Set_community" : "FromClient",
             "Local_pref" : 150,
             "Match_community" : None
          },
          "ToClient" : {
+            "Prio" : 20,
             "Set_community" : None,
             "Local_pref" : None,
             "Match_community" : "Everybody"
