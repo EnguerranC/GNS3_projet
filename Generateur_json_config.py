@@ -21,7 +21,7 @@ def Matrice_addressage_vide(M_ad, N) :
 
 # Dictionnaire config à la base de la structure du fichier json
 config = {
-   1 : {
+   1 : { # Numero de l'AS
       "Nombre_routeur" : 4, # Nombre de routeur dans l'AS
       "Type_AS" : "AS", # Type de l'AS (AS, Client, Peer ou Provider)
       "Matrice_adjacence" : [[0,1,0,0],
@@ -198,12 +198,12 @@ config = {
          }
       }
    },
-   "Route_map" : {
-         "FromProvider" : {
-            "Prio" : 20,
-            "Set_community" : "FromProvider",
-            "Local_pref" : 50,
-            "Match_community" : None
+   "Route_map" : { # Infos concernant les routes map
+         "FromProvider" : { # Nom de la route map
+            "Prio" : 20, # Priorité de la route map
+            "Set_community" : "Provider", # Communauté associée à la route map
+            "Local_pref" : 50, # Local pref associé à la route map
+            "Match_community" : None # Condition de match a une communauté
          },
          "ToProvider" : {
             "Prio" : 20,
@@ -213,7 +213,7 @@ config = {
          },
          "FromPeer" : {
             "Prio" : 20,
-            "Set_community" : "FromPeer",
+            "Set_community" : "Peer",
             "Local_pref" : 100,
             "Match_community" : None
          },
@@ -225,7 +225,7 @@ config = {
          },
          "FromClient" :{
             "Prio" : 20,
-            "Set_community" : "FromClient",
+            "Set_community" : "Client",
             "Local_pref" : 150,
             "Match_community" : None
          },

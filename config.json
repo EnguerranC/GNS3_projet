@@ -133,7 +133,6 @@
             "3": {
                 "2": {
                     "Num_routeur_bordeur_remote": 3,
-                    "Protocole": "BGP",
                     "Adresse": "2000:21::1/32",
                     "Interface": "GigabitEthernet3/0"
                 }
@@ -141,7 +140,6 @@
             "2": {
                 "3": {
                     "Num_routeur_bordeur_remote": 1,
-                    "Protocole": "BGP",
                     "Adresse": "2000:31::1/32",
                     "Interface": "GigabitEthernet3/0"
                 }
@@ -149,7 +147,6 @@
             "1": {
                 "4": {
                     "Num_routeur_bordeur_remote": 1,
-                    "Protocole": "BGP",
                     "Adresse": "2000:41::1/32",
                     "Interface": "GigabitEthernet2/0"
                 }
@@ -157,7 +154,6 @@
             "4": {
                 "5": {
                     "Num_routeur_bordeur_remote": 1,
-                    "Protocole": "BGP",
                     "Adresse": "2000:51::1/32",
                     "Interface": "GigabitEthernet2/0"
                 }
@@ -298,7 +294,6 @@
             "3": {
                 "1": {
                     "Num_routeur_bordeur_remote": 3,
-                    "Protocole": "BGP",
                     "Adresse": "2000:21::2/32",
                     "Interface": "GigabitEthernet3/0"
                 }
@@ -306,7 +301,6 @@
             "2": {
                 "3": {
                     "Num_routeur_bordeur_remote": 1,
-                    "Protocole": "BGP",
                     "Adresse": "2000:32::2/32",
                     "Interface": "GigabitEthernet3/0"
                 }
@@ -314,7 +308,6 @@
             "1": {
                 "6": {
                     "Num_routeur_bordeur_remote": 1,
-                    "Protocole": "BGP",
                     "Adresse": "2000:62::2/32",
                     "Interface": "GigabitEthernet2/0"
                 }
@@ -353,13 +346,11 @@
             "1": {
                 "2": {
                     "Num_routeur_bordeur_remote": 1,
-                    "Protocole": "BGP",
                     "Adresse": "2000:32::3/32",
                     "Interface": "GigabitEthernet1/0"
                 },
                 "1": {
                     "Num_routeur_bordeur_remote": 2,
-                    "Protocole": "BGP",
                     "Adresse": "2000:31::3/32",
                     "Interface": "GigabitEthernet2/0"
                 }
@@ -398,7 +389,6 @@
             "1": {
                 "1": {
                     "Num_routeur_bordeur_remote": 1,
-                    "Protocole": "BGP",
                     "Adresse": "2000:41::4/32",
                     "Interface": "GigabitEthernet1/0"
                 }
@@ -437,7 +427,6 @@
             "1": {
                 "1": {
                     "Num_routeur_bordeur_remote": 4,
-                    "Protocole": "BGP",
                     "Adresse": "2000:51::5/32",
                     "Interface": "GigabitEthernet1/0"
                 }
@@ -476,7 +465,6 @@
             "1": {
                 "2": {
                     "Num_routeur_bordeur_remote": 2,
-                    "Protocole": "BGP",
                     "Adresse": "2000:62::6/32",
                     "Interface": "GigabitEthernet1/0"
                 }
