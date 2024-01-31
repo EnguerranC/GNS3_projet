@@ -129,14 +129,14 @@ for i in range(nombre_AS) : #on parcours chaque AS
                             fichier_cfg.write("  network " + masque_reseau(config[liste_AS[i]]["Matrice_adressage_interface"][k][l][0]) + "\n")
                             liste_masque.append(masque_reseau(config[liste_AS[i]]["Matrice_adressage_interface"][k][l][0]))
 
-                if config[liste_AS[i]]["Type_AS"] != "AS" : # on ne configure pas les route-map pour les AS
-                    for k in list(config[liste_AS[i]]["Routage_interAS"][str(j+1)].keys()) : # ici la configuration des route map
+                for k in list(config[liste_AS[i]]["Routage_interAS"][str(j+1)].keys()) : # ici la configuration des route map
+                    fichier_cfg.write("  neighbor " + config[liste_AS[i]]["Routage_interAS"][str(j+1)][str(k)]["Adresse"].split("/")[0][:-1] + k + " activate\n")
+                    if config[liste_AS[i]]["Type_AS"] != "AS" : # on ne configure pas les route-map pour les AS
                         fichier_cfg.writelines([
-                            "  neighbor " + config[liste_AS[i]]["Routage_interAS"][str(j+1)][str(k)]["Adresse"].split("/")[0][:-1] + k + " activate\n",
                             "  neighbor " + config[liste_AS[i]]["Routage_interAS"][str(j+1)][str(k)]["Adresse"].split("/")[0][:-1] + k + " route-map from" + config[liste_AS[i]]["Type_AS"] + " in\n",
                             "  neighbor " + config[liste_AS[i]]["Routage_interAS"][str(j+1)][str(k)]["Adresse"].split("/")[0][:-1] + k + " route-map to" + config[liste_AS[i]]["Type_AS"] + " out\n"
                         ])
-
+                            
             for k in range(config[liste_AS[i]]["Nombre_routeur"] - 1) :
                 fichier_cfg.write("  neighbor 5000::" + str([e for e in liste_router if e != num_router][k]) + " activate\n")
 
