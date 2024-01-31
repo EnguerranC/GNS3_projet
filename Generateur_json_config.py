@@ -6,12 +6,6 @@ import json
       Pour rajouter un AS, rajouter juste l'AS et ses caractéristiques dans le dico config et modifier les autres AS pour les éventuels liens
 """
 
-
-"""
-A rajouter plus tard :
-- Generateur du graphe d'adjacence à partir de quelque chose plus pratique
-"""
-
 # Generateur de la matrice d'adressage vide
 def Matrice_addressage_vide(M_ad, N) :
    for i in range(N) :
@@ -30,7 +24,6 @@ config = {
    1 : {
       "Nombre_routeur" : 4,
       "Type_AS" : "AS",
-      "Local_pref": None,
       "Matrice_adjacence" : [[0,1,0,0],
                              [1,0,1,0],
                              [0,1,0,1],
@@ -80,7 +73,6 @@ config = {
    2 : {
       "Nombre_routeur" : 4,
       "Type_AS" : "AS",
-      "Local_pref": None,
       "Matrice_adjacence" : [[0,1,0,0],
                              [1,0,1,0],
                              [0,1,0,1],
@@ -123,7 +115,6 @@ config = {
    3 : {
       "Nombre_routeur" : 1,
       "Type_AS" : "Provider",
-      "Local_pref": None,
       "Matrice_adjacence" : [[0]],
       "Masque_reseau" : "113::0/48",
       "Maque_loopback" : "5000::0/64",
@@ -153,7 +144,6 @@ config = {
    4 : {
       "Nombre_routeur" : 1,
       "Type_AS" : "Peer",
-      "Local_pref": None,
       "Matrice_adjacence" : [[0]],
       "Masque_reseau" : "114::0/48",
       "Maque_loopback" : "5000::0/64",
@@ -176,7 +166,6 @@ config = {
    5 : {
       "Nombre_routeur" : 1,
       "Type_AS" : "Client",
-      "Local_pref": None,
       "Matrice_adjacence" : [[0]],
       "Masque_reseau" : "115::0/48",
       "Maque_loopback" : "5000::0/64",
@@ -200,7 +189,6 @@ config = {
    6 : {
       "Nombre_routeur" : 1,
       "Type_AS" : "Client",
-      "Local_pref": None,
       "Matrice_adjacence" : [[0]],
       "Masque_reseau" : "116::0/48",
       "Maque_loopback" : "5000::0/64",
@@ -221,6 +209,39 @@ config = {
          }
       }
    },
+   "Route_map" : {
+         "FromProvider" : {
+            "Set_community" : "FromProvider",
+            "Local_pref" : 50,
+            "Match_community" : None
+         },
+         "ToProvider" : {
+            "Set_community" : None,
+            "Local_pref" : None,
+            "Match_community" : "Client"
+         },
+         "FromPeer" : {
+            "Set_community" : "FromPeer",
+            "Local_pref" : 100,
+            "Match_community" : None
+         },
+         "ToPeer" : {
+            "Set_community" : None,
+            "Local_pref" : None,
+            "Match_community" : "Client"
+         },
+         "FromClient" :{
+            "Set_community" : "FromClient",
+            "Local_pref" : 150,
+            "Match_community" : None
+         },
+         "ToClient" : {
+            "Set_community" : None,
+            "Local_pref" : None,
+            "Match_community" : "Everybody"
+            
+         }
+      },
 }
 
 # Generateur de la base de donnee des routeurs : Num_routeur, Nom, Dynamips_ID
