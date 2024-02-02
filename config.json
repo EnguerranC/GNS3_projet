@@ -316,7 +316,7 @@
     },
     "3": {
         "Nombre_routeur": 1,
-        "Type_AS": "Provider",
+        "Type_AS": "provider",
         "Matrice_adjacence": [
             [
                 0
@@ -359,7 +359,7 @@
     },
     "4": {
         "Nombre_routeur": 1,
-        "Type_AS": "Peer",
+        "Type_AS": "peer",
         "Matrice_adjacence": [
             [
                 0
@@ -397,7 +397,7 @@
     },
     "5": {
         "Nombre_routeur": 1,
-        "Type_AS": "Client",
+        "Type_AS": "client",
         "Matrice_adjacence": [
             [
                 0
@@ -435,7 +435,7 @@
     },
     "6": {
         "Nombre_routeur": 1,
-        "Type_AS": "Client",
+        "Type_AS": "client",
         "Matrice_adjacence": [
             [
                 0
@@ -472,37 +472,37 @@
         }
     },
     "Route_map": {
-        "FromProvider": {
+        "fromprovider": {
             "Prio": 20,
-            "Set_community": "FromProvider",
+            "Set_community": "Provider",
             "Local_pref": 50,
             "Match_community": null
         },
-        "ToProvider": {
+        "toprovider": {
             "Prio": 20,
             "Set_community": null,
             "Local_pref": null,
             "Match_community": "Client"
         },
-        "FromPeer": {
+        "frompeer": {
             "Prio": 20,
-            "Set_community": "FromPeer",
+            "Set_community": "Peer",
             "Local_pref": 100,
             "Match_community": null
         },
-        "ToPeer": {
+        "topeer": {
             "Prio": 20,
             "Set_community": null,
             "Local_pref": null,
             "Match_community": "Client"
         },
-        "FromClient": {
+        "fromclient": {
             "Prio": 20,
-            "Set_community": "FromClient",
+            "Set_community": "Client",
             "Local_pref": 150,
             "Match_community": null
         },
-        "ToClient": {
+        "toclient": {
             "Prio": 20,
             "Set_community": null,
             "Local_pref": null,

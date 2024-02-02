@@ -108,7 +108,7 @@ config = {
    },
    3 : {
       "Nombre_routeur" : 1,
-      "Type_AS" : "Provider",
+      "Type_AS" : "provider",
       "Matrice_adjacence" : [[0]],
       "Masque_reseau" : "113::0/48",
       "Maque_loopback" : "5000::0/64",
@@ -135,7 +135,7 @@ config = {
    },
    4 : {
       "Nombre_routeur" : 1,
-      "Type_AS" : "Peer",
+      "Type_AS" : "peer",
       "Matrice_adjacence" : [[0]],
       "Masque_reseau" : "114::0/48",
       "Maque_loopback" : "5000::0/64",
@@ -156,7 +156,7 @@ config = {
    },
    5 : {
       "Nombre_routeur" : 1,
-      "Type_AS" : "Client",
+      "Type_AS" : "client",
       "Matrice_adjacence" : [[0]],
       "Masque_reseau" : "115::0/48",
       "Maque_loopback" : "5000::0/64",
@@ -178,7 +178,7 @@ config = {
    },
    6 : {
       "Nombre_routeur" : 1,
-      "Type_AS" : "Client",
+      "Type_AS" : "client",
       "Matrice_adjacence" : [[0]],
       "Masque_reseau" : "116::0/48",
       "Maque_loopback" : "5000::0/64",
@@ -199,37 +199,37 @@ config = {
       }
    },
    "Route_map" : { # Infos concernant les routes map
-         "FromProvider" : { # Nom de la route map
+         "fromprovider" : { # Nom de la route map
             "Prio" : 20, # Priorité de la route map
             "Set_community" : "Provider", # Communauté associée à la route map
             "Local_pref" : 50, # Local pref associé à la route map
             "Match_community" : None # Condition de match a une communauté
          },
-         "ToProvider" : {
+         "toprovider" : {
             "Prio" : 20,
             "Set_community" : None,
             "Local_pref" : None,
             "Match_community" : "Client"
          },
-         "FromPeer" : {
+         "frompeer" : {
             "Prio" : 20,
             "Set_community" : "Peer",
             "Local_pref" : 100,
             "Match_community" : None
          },
-         "ToPeer" : {
+         "topeer" : {
             "Prio" : 20,
             "Set_community" : None,
             "Local_pref" : None,
             "Match_community" : "Client"
          },
-         "FromClient" :{
+         "fromclient" :{
             "Prio" : 20,
             "Set_community" : "Client",
             "Local_pref" : 150,
             "Match_community" : None
          },
-         "ToClient" : {
+         "toclient" : {
             "Prio" : 20,
             "Set_community" : None,
             "Local_pref" : None,
